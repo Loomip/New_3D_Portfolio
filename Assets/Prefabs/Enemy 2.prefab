@@ -2068,7 +2068,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackDistance: 8
   detactDistance: 10
-  hitParticle: {fileID: 0}
+  hitParticle: {fileID: 1429954232896169632, guid: ace12d274cc84304285d967b30174303,
+    type: 3}
 --- !u!114 &5840372954306683512
 MonoBehaviour:
   m_ObjectHideFlags: 0

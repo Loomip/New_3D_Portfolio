@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class BossHitState : BossAttackableState
 {
+    // 피격 파티클
+    [SerializeField] protected ParticleSystem hitParticle;
+
     IEnumerator DamagerCoolDoun()
     {
         Material[] materialsCopy = meshs.materials;
@@ -18,6 +21,9 @@ public class BossHitState : BossAttackableState
 
         // 맞는 사운드
         //SoundManager.instance.PlaySfx(e_Sfx.Hit);
+
+        // 피격효과 재생
+        hitParticle.Play();
 
         yield return new WaitForSeconds(0.2f);
 

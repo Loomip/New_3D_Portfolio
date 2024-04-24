@@ -19,7 +19,6 @@ public class MonsterFSMController : MonoBehaviour
     [SerializeField] private Transform[] wanderPoints;
     public Transform[] WanderPoints { get => wanderPoints; set => wanderPoints = value; }
 
-
     // 상태 전환 메소드
     public void TransactionToState(e_MonsterState state)
     {
@@ -52,6 +51,8 @@ public class MonsterFSMController : MonoBehaviour
 
         // 대기 상태로 시작
         TransactionToState(e_MonsterState.Idle);
+
+        wanderPoints = currentState.Ground.GetWanderPoints();
     }
 
     private void Update()

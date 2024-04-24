@@ -5,7 +5,6 @@ using UnityEngine.ProBuilder.Shapes;
 
 public class Door : MonoBehaviour
 {
-    private Transform door; // 문 오브젝트
     public float openHeight = 5f; // 문이 열릴 때의 높이
     public float openSpeed = 2f; // 문이 열리는 속도
     public float openDuration = 5f; // 문이 열려 있을 시간
@@ -16,45 +15,42 @@ public class Door : MonoBehaviour
 
     private void Start()
     {
-        closedPosition = door.position;
-        openPosition = new Vector3(door.position.x, door.position.y + openHeight, door.position.z);
+        closedPosition = transform.position;
+        openPosition = new Vector3(transform.position.x, transform.position.y + openHeight, transform.position.z);
     }
 
-    public void OpenDoor(Vector3 pPosition)
+    public void OpenDoor()
     {
-        if (Vector3.Distance(pPosition, door.position) < activationDistance)
-        {
-            OpenDoor();
-        }
+        StartCoroutine(OpenDoorCoroutine());
     }
 
-    private void OpenDoor()
+    public void CloseDoor()
     {
-        StartCoroutine(OpenAndCloseDoor());
+        StopCoroutine(CloseDoorCoroutine());
     }
 
-    private IEnumerator OpenAndCloseDoor()
+    private IEnumerator OpenDoorCoroutine()
     {
         // 문을 열음
-        while (Vector3.Distance(door.position, openPosition) > 0.01f)
+        while (Vector3.Distance(transform.position, openPosition) > 0.01f)
         {
-            door.position = Vector3.Lerp(door.position, openPosition, openSpeed * Time.deltaTime);
+            transform.position = Vector3.Lerp(transform.position, openPosition, openSpeed * Time.deltaTime);
             yield return null;
         }
 
-        door.position = openPosition;
+        transform.position = openPosition;
+    }
 
-        // 일정 시간 동안 대기
-        yield return new WaitForSeconds(openDuration);
-
+    private IEnumerator CloseDoorCoroutine()
+    {
         // 문을 닫음
-        while (Vector3.Distance(door.position, closedPosition) > 0.01f)
+        while (Vector3.Distance(transform.position, closedPosition) > 0.01f)
         {
-            door.position = Vector3.Lerp(door.position, closedPosition, openSpeed * Time.deltaTime);
+            transform.position = Vector3.Lerp(transform.position, closedPosition, openSpeed * Time.deltaTime);
             yield return null;
         }
 
-        door.position = closedPosition;
+        transform.position = closedPosition;
     }
 
 }

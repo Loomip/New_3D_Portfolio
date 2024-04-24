@@ -1334,6 +1334,8 @@ MonoBehaviour:
   attackDistance: 19
   detactDistance: 20
   smoothValue: 5
+  hitParticle: {fileID: 1429954232896169632, guid: ace12d274cc84304285d967b30174303,
+    type: 3}
 --- !u!114 &4421959469860585494
 MonoBehaviour:
   m_ObjectHideFlags: 0

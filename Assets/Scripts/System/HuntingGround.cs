@@ -1,0 +1,157 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class HuntingGround : MonoBehaviour
+{
+    // 몬스터가 배회할 위치를 넘겨줄 배회위치
+    [SerializeField] private Transform[] wanderPoints;
+    public Transform[] WanderPoints { get => wanderPoints; set => wanderPoints = value; }
+
+    [SerializeField] private List<GameObject> effectPrefabs;  // 소환 이팩트
+    [SerializeField] private List<GameObject> monsterPrefabs; // 몬스터
+    [SerializeField] private Door doorin;               // 문 오브젝트
+    [SerializeField] private Door doorOut;              // 문 오브젝트
+    [SerializeField] private BoxCollider zone;                // 구역의 BoxCollider
+    [SerializeField] private float effectAppearTime = 2.0f;   // 소환 이팩트가 나타나는 시간
+
+    [SerializeField] private Vector3 spawnAreaCenter; // 몬스터 스폰 영역 중심 위치
+    [SerializeField] private Vector3 spawnAreaSize;   // 몬스터 스폰 영역 크기
+
+    [SerializeField] private int monstersToClear = 10; // 클리어하기 위해 필요한 몬스터 수
+
+    [SerializeField] private List<GameObject> enemyList = new List<GameObject>();
+
+    // 몬스터에게 배회위치를 넘겨줄 메소드
+    public Transform[] GetWanderPoints()
+    {
+        return wanderPoints;
+    }
+
+    // 평면 원 소환 범위
+    Vector3 GetRandomSpawnPosition()
+    {
+        float radius = spawnAreaSize.x / 2f; // 원의 반지름을 spawnAreaSize의 절반으로 설정
+        float randomAngle = Random.Range(0f, 360f); // 0에서 360 사이의 랜덤한 각도
+
+        // 원의 랜덤한 위치 계산 (y 좌표는 고정)
+        float x = spawnAreaCenter.x + radius * Mathf.Cos(randomAngle * Mathf.Deg2Rad);
+        float z = spawnAreaCenter.z + radius * Mathf.Sin(randomAngle * Mathf.Deg2Rad);
+
+        return new Vector3(x, spawnAreaCenter.y, z);
+    }
+
+    IEnumerator SpawnEffectAndMonster()
+    {
+        while (GetEnemyCount() < monstersToClear)
+        {
+            // 랜덤 이팩트 선택 코드
+            GameObject selectedEffectPrefab = effectPrefabs[Random.Range(0, effectPrefabs.Count)];
+
+            // 랜덤 몬스터 선택 코드
+            GameObject selectedMonsterPrefab = monsterPrefabs[Random.Range(0, monsterPrefabs.Count)];
+
+            // 몬스터 스폰 위치 계산
+            Vector3 randomSpawnPosition = GetRandomSpawnPosition();
+
+            // 이팩트 생성
+            GameObject effectInstance = Instantiate(selectedEffectPrefab, randomSpawnPosition, selectedEffectPrefab.transform.rotation);
+
+            // 몬스터 생성
+            GameObject monsterInstance = Instantiate(selectedMonsterPrefab, randomSpawnPosition, Quaternion.identity);
+
+            Destroy(effectInstance, 5f);
+
+            // MonsterState 스크립트의 SetHuntingGroundController 메서드를 호출하여 HuntingGround 인스턴스 전달
+            MonsterState enemy = monsterInstance.GetComponent<MonsterState>();
+            if (enemy != null)
+            {
+                enemy.SetHuntingGroundController(this);
+
+                enemyList.Add(enemy.gameObject);
+
+                Debug.Log("currentMonsterCount : " + GetEnemyCount());
+            }
+
+            if (GetEnemyCount() == monstersToClear)
+            {
+                StopCoroutine(AppearEffectAndSpawn());
+            }
+
+            yield return null;
+        }
+    }
+
+    public void MonsterDied(MonsterState _enemy)
+    {
+        if (enemyList.Contains(_enemy.gameObject))
+        {
+            enemyList.Remove(_enemy.gameObject);
+        }
+        else
+        {
+            Debug.Log("The enemy is not in the list.");
+        }
+
+        if (GetEnemyCount() <= 0)
+        {
+            // 모든 몬스터가 사망하여 클리어 상태
+
+            doorin.OpenDoor(); // 문을 염
+            doorOut.OpenDoor(); // 문을 염
+
+            Debug.Log("구역 클리어!");
+
+            // 클리어 후에는 초기화 또는 다음 동작을 수행하는 등의 로직 추가
+        }
+
+        Debug.Log("DiedcurrentMonsterCount : " + GetEnemyCount());
+    }
+
+    public int GetEnemyCount() => enemyList.Count;
+
+    IEnumerator AppearEffectAndSpawn()
+    {
+        float elapsedTime = 0f;
+        float startScale = 0.1f;
+        float targetScale = 0.1f;
+
+        // 이팩트 나타나는 애니메이션
+        while (elapsedTime < effectAppearTime)
+        {
+            float t = elapsedTime / effectAppearTime;
+            float scale = Mathf.Lerp(startScale, targetScale, t);
+
+            foreach (GameObject effectPrefab in effectPrefabs)
+            {
+                effectPrefab.transform.localScale = new Vector3(scale, scale, scale);
+            }
+
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        StartCoroutine(SpawnEffectAndMonster());
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            StartCoroutine(AppearEffectAndSpawn());
+
+            // 몬스터 소환 등의 로직 실행
+            doorin.CloseDoor();
+            doorOut.CloseDoor();
+        }
+
+    }
+
+    //소환 영역 표시
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(new Vector3(spawnAreaCenter.x, spawnAreaCenter.y, spawnAreaCenter.z), spawnAreaSize.x / 2f);
+    }
+
+}

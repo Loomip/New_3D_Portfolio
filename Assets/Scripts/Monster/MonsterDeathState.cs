@@ -62,6 +62,7 @@ public class MonsterDeathState : MonsterState
         {
             // ∏ÛΩ∫≈Õ∞° º“∏Íµ 
             //Instantiate(destroyParticlePrefab, ragdoll.transform.position, Quaternion.identity);
+            ground.MonsterDied(this);
             Destroy(gameObject);
         }
     }

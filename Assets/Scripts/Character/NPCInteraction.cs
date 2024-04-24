@@ -11,6 +11,11 @@ public class NPCInteraction : MonoBehaviour
         {
             InteractWithCurrentTarget();
         }
+
+        if(Input.GetKeyUp(KeyCode.E))
+        {
+            OpenDoorControl();
+        }
     }
 
     //상호 작용
@@ -38,6 +43,35 @@ public class NPCInteraction : MonoBehaviour
             if (collider.TryGetComponent(out NPC_Base npc))
             {
                 return npc;
+            }
+        }
+        return null;
+    }
+
+    void OpenDoorControl()
+    {
+        float interactRange = 1.5f;
+
+        Collider[] colliderArray = Physics.OverlapSphere(transform.position, interactRange);
+
+        foreach (Collider collider in colliderArray)
+        {
+            if (collider.TryGetComponent(out Door door))
+            {
+                door.OpenDoor();
+            }
+        }
+    }
+
+    public Door GetDoorableObject()
+    {
+        float interactRange = 1.5f;
+        Collider[] colliderArray = Physics.OverlapSphere(transform.position, interactRange);
+        foreach (Collider collider in colliderArray)
+        {
+            if (collider.TryGetComponent(out Door door))
+            {
+                return door;
             }
         }
         return null;

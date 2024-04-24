@@ -23,6 +23,11 @@ public abstract class MonsterState : MonoBehaviour
     // 체력 컴포넌트
     protected Health monsterHp;
 
+    // 사냥터 컴포넌트
+    protected HuntingGround ground;
+
+    public HuntingGround Ground { get => ground; set => ground = value; }
+
     // 몬스터 상태 관련 인터페이스(문법아님) 메소드 선언
 
     // 몬스터 상태 시작 (다른상태로 전이됨) 메소드
@@ -42,5 +47,12 @@ public abstract class MonsterState : MonoBehaviour
         monsterHp = GetComponent<Health>();
         animator = GetComponentInChildren<Animator>();
         meshs = GetComponentInChildren<SkinnedMeshRenderer>();
+        ground = FindObjectOfType<HuntingGround>();
+    }
+
+    // ClassroomController 설정
+    public void SetHuntingGroundController(HuntingGround controller)
+    {
+        ground = controller;
     }
 }
