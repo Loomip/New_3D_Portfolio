@@ -5,28 +5,41 @@ using UnityEngine.ProBuilder.Shapes;
 
 public class Door : MonoBehaviour
 {
-    public float openHeight = 5f; // 문이 열릴 때의 높이
-    public float openSpeed = 2f; // 문이 열리는 속도
-    public float openDuration = 5f; // 문이 열려 있을 시간
-    public float activationDistance = 3f; // 문을 열 수 있는 최대 거리
+    // 문이 열리는 속도
+    public float openSpeed = 2f; 
+    // 문을 열 수 있는 최대 거리
+    public float activationDistance = 3f; 
 
-    private Vector3 closedPosition; // 문이 닫힌 위치
-    private Vector3 openPosition; // 문이 열린 위치
+    // 문이 닫힌 위치
+    private Vector3 closedPosition; 
+    // 문이 열린 위치
+    private Vector3 openPosition; 
+
+    // 문이 닫혀 있는지
+    private bool isDoorClosed = true;
 
     private void Start()
     {
-        closedPosition = transform.position;
-        openPosition = new Vector3(transform.position.x, transform.position.y + openHeight, transform.position.z);
-    }
-
-    public void OpenDoor()
-    {
-        StartCoroutine(OpenDoorCoroutine());
+        closedPosition = new Vector3(transform.position.x, 0f, transform.position.z);
+        openPosition = new Vector3(transform.position.x, 10f, transform.position.z);
     }
 
     public void CloseDoor()
     {
-        StopCoroutine(CloseDoorCoroutine());
+        if (!isDoorClosed)
+        {
+            StartCoroutine(CloseDoorCoroutine());
+            isDoorClosed = true;
+        }
+    }
+
+    public void OpenDoor()
+    {
+        if (isDoorClosed)
+        {
+            StartCoroutine(OpenDoorCoroutine());
+            isDoorClosed = false;
+        }
     }
 
     private IEnumerator OpenDoorCoroutine()

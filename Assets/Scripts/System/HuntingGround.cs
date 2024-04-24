@@ -31,12 +31,13 @@ public class HuntingGround : MonoBehaviour
     // 평면 원 소환 범위
     Vector3 GetRandomSpawnPosition()
     {
-        float radius = spawnAreaSize.x / 2f; // 원의 반지름을 spawnAreaSize의 절반으로 설정
+        float radius = spawnAreaSize.x; // 원의 반지름을 spawnAreaSize로 설정
+        float randomRadius = Random.Range(0f, radius); // 0에서 지정된 반지름 사이의 랜덤한 거리
         float randomAngle = Random.Range(0f, 360f); // 0에서 360 사이의 랜덤한 각도
 
         // 원의 랜덤한 위치 계산 (y 좌표는 고정)
-        float x = spawnAreaCenter.x + radius * Mathf.Cos(randomAngle * Mathf.Deg2Rad);
-        float z = spawnAreaCenter.z + radius * Mathf.Sin(randomAngle * Mathf.Deg2Rad);
+        float x = spawnAreaCenter.x + randomRadius * Mathf.Cos(randomAngle * Mathf.Deg2Rad);
+        float z = spawnAreaCenter.z + randomRadius * Mathf.Sin(randomAngle * Mathf.Deg2Rad);
 
         return new Vector3(x, spawnAreaCenter.y, z);
     }
@@ -114,7 +115,7 @@ public class HuntingGround : MonoBehaviour
     {
         float elapsedTime = 0f;
         float startScale = 0.1f;
-        float targetScale = 0.1f;
+        float targetScale = 1f;
 
         // 이팩트 나타나는 애니메이션
         while (elapsedTime < effectAppearTime)
@@ -142,16 +143,32 @@ public class HuntingGround : MonoBehaviour
 
             // 몬스터 소환 등의 로직 실행
             doorin.CloseDoor();
-            doorOut.CloseDoor();
         }
 
     }
 
-    //소환 영역 표시
+    // 원 소환 영역 표시
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(new Vector3(spawnAreaCenter.x, spawnAreaCenter.y, spawnAreaCenter.z), spawnAreaSize.x / 2f);
+
+        float theta = 0;
+        float x = spawnAreaSize.x * Mathf.Cos(theta);
+        float z = spawnAreaSize.x * Mathf.Sin(theta);
+        Vector3 pos = spawnAreaCenter + new Vector3(x, 0, z);
+        Vector3 newPos = pos;
+        Vector3 lastPos = pos;
+        for (theta = 0.1f; theta < Mathf.PI * 2; theta += 0.1f)
+        {
+            x = spawnAreaSize.x * Mathf.Cos(theta);
+            z = spawnAreaSize.x * Mathf.Sin(theta);
+            newPos = spawnAreaCenter + new Vector3(x, 0, z);
+            Gizmos.DrawLine(lastPos, newPos);
+            lastPos = newPos;
+        }
+
+        // 원의 시작점과 끝점을 연결
+        Gizmos.DrawLine(pos, newPos);
     }
 
 }
