@@ -1,0 +1,88 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 8
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 704db9dcbaf880146b157acf19efda88, type: 3}
+  m_Name: Data_Lacalize
+  m_EditorClassIdentifier: 
+  sheets:
+  - name: Kor
+    list:
+    - ID: 1000
+      Name: Weapon
+      SpritName: Weapon
+      TooltipName: "\uB450\uC190\uAC80"
+      Explan: "\uB450 \uC190\uC73C\uB85C \uC7A1\uB294 \uB290\uB9B0 \uAC80"
+    - ID: 1001
+      Name: Weapon + 1
+      SpritName: Weapon
+      TooltipName: "\uB450\uC190\uAC80 + 1"
+      Explan: "\uB450 \uC190\uC73C\uB85C \uC7A1\uB294 \uB290\uB9B0 \uAC80"
+    - ID: 1002
+      Name: Weapon + 2
+      SpritName: Weapon
+      TooltipName: "\uB450\uC190\uAC80 + 2"
+      Explan: "\uB450 \uC190\uC73C\uB85C \uC7A1\uB294 \uB290\uB9B0 \uAC80"
+    - ID: 1003
+      Name: Weapon + 3
+      SpritName: Weapon
+      TooltipName: "\uB450\uC190\uAC80 + 3"
+      Explan: "\uB450 \uC190\uC73C\uB85C \uC7A1\uB294 \uB290\uB9B0 \uAC80"
+    - ID: 1004
+      Name: Weapon + 4
+      SpritName: Weapon
+      TooltipName: "\uB450\uC190\uAC80 + 4"
+      Explan: "\uB450 \uC190\uC73C\uB85C \uC7A1\uB294 \uB290\uB9B0 \uAC80"
+    - ID: 1005
+      Name: Weapon + 5
+      SpritName: Weapon
+      TooltipName: "\uB450\uC190\uAC80 + 5"
+      Explan: "\uB450 \uC190\uC73C\uB85C \uC7A1\uB294 \uB290\uB9B0 \uAC80"
+    - ID: 2000
+      Name: Spell
+      SpritName: Spell
+      TooltipName: "\uC218\uC815\uAD6C"
+      Explan: "\uAE30\uBB18\uD55C \uAE30\uC6B4\uC774 \uC788\uB294 \uAD6C\uC2AC"
+    - ID: 2001
+      Name: Spell + 1
+      SpritName: Spell
+      TooltipName: "\uC218\uC815\uAD6C + 1"
+      Explan: "\uAE30\uBB18\uD55C \uAE30\uC6B4\uC774 \uC788\uB294 \uAD6C\uC2AC"
+    - ID: 2002
+      Name: Spell + 2
+      SpritName: Spell
+      TooltipName: "\uC218\uC815\uAD6C + 2"
+      Explan: "\uAE30\uBB18\uD55C \uAE30\uC6B4\uC774 \uC788\uB294 \uAD6C\uC2AC"
+    - ID: 2003
+      Name: Spell + 3
+      SpritName: Spell
+      TooltipName: "\uC218\uC815\uAD6C + 3"
+      Explan: "\uAE30\uBB18\uD55C \uAE30\uC6B4\uC774 \uC788\uB294 \uAD6C\uC2AC"
+    - ID: 2004
+      Name: Spell + 4
+      SpritName: Spell
+      TooltipName: "\uC218\uC815\uAD6C + 4"
+      Explan: "\uAE30\uBB18\uD55C \uAE30\uC6B4\uC774 \uC788\uB294 \uAD6C\uC2AC"
+    - ID: 2005
+      Name: Spell + 5
+      SpritName: Spell
+      TooltipName: "\uC218\uC815\uAD6C + 5"
+      Explan: "\uAE30\uBB18\uD55C \uAE30\uC6B4\uC774 \uC788\uB294 \uAD6C\uC2AC"
+    - ID: 10000
+      Name: Potion
+      SpritName: Potion
+      TooltipName: "\uD3EC\uC158"
+      Explan: "\uCCB4\uB825\uC744 \uC870\uAE08 \uCC44\uC6CC\uC8FC\uB294 \uD3EC\uC158"
+    - ID: 10001
+      Name: Leaf
+      SpritName: Leaf
+      TooltipName: "\uC78E"
+      Explan: "\uB9C8\uB098\uB97C \uC870\uAE08 \uCC44\uC6CC\uC8FC\uB294  \uC2E0\uBE44\uD55C
+        \uC78E "

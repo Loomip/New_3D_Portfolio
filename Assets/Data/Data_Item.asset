@@ -1,0 +1,171 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 8
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2baa8cd7b2a1b947bbc7b24d511c8ad, type: 3}
+  m_Name: Data_Item
+  m_EditorClassIdentifier: 
+  sheets:
+  - name: Sheet1
+    list:
+    - ID: 1000
+      Name: Weapon
+      ItemType: Weapon
+      SpritName: Weapon
+      Atk: 100
+      Def: 10
+      Spd: 1
+      Hp: 500
+      MaxHp: 500
+      Mp: 0
+      MaxMp: 0
+    - ID: 1001
+      Name: Weapon +1
+      ItemType: Weapon
+      SpritName: Weapon
+      Atk: 110
+      Def: 10
+      Spd: 1
+      Hp: 500
+      MaxHp: 500
+      Mp: 0
+      MaxMp: 0
+    - ID: 1002
+      Name: Weapon +2
+      ItemType: Weapon
+      SpritName: Weapon
+      Atk: 120
+      Def: 10
+      Spd: 1
+      Hp: 500
+      MaxHp: 500
+      Mp: 0
+      MaxMp: 0
+    - ID: 1003
+      Name: Weapon +3
+      ItemType: Weapon
+      SpritName: Weapon
+      Atk: 130
+      Def: 10
+      Spd: 1
+      Hp: 500
+      MaxHp: 500
+      Mp: 0
+      MaxMp: 0
+    - ID: 1004
+      Name: Weapon +4
+      ItemType: Weapon
+      SpritName: Weapon
+      Atk: 140
+      Def: 10
+      Spd: 1
+      Hp: 500
+      MaxHp: 500
+      Mp: 0
+      MaxMp: 0
+    - ID: 1005
+      Name: Weapon +5
+      ItemType: Weapon
+      SpritName: Weapon
+      Atk: 150
+      Def: 10
+      Spd: 2
+      Hp: 600
+      MaxHp: 600
+      Mp: 0
+      MaxMp: 0
+    - ID: 2000
+      Name: Spell
+      ItemType: Weapon
+      SpritName: Spell
+      Atk: 70
+      Def: 0
+      Spd: 0
+      Hp: 100
+      MaxHp: 100
+      Mp: 0
+      MaxMp: 100
+    - ID: 2001
+      Name: Spell +1
+      ItemType: Weapon
+      SpritName: Spell
+      Atk: 80
+      Def: 0
+      Spd: 0
+      Hp: 100
+      MaxHp: 100
+      Mp: 0
+      MaxMp: 100
+    - ID: 2002
+      Name: Spell +2
+      ItemType: Weapon
+      SpritName: Spell
+      Atk: 90
+      Def: 0
+      Spd: 0
+      Hp: 100
+      MaxHp: 100
+      Mp: 0
+      MaxMp: 100
+    - ID: 2003
+      Name: Spell +3
+      ItemType: Weapon
+      SpritName: Spell
+      Atk: 100
+      Def: 0
+      Spd: 0
+      Hp: 100
+      MaxHp: 100
+      Mp: 0
+      MaxMp: 100
+    - ID: 2004
+      Name: Spell +4
+      ItemType: Weapon
+      SpritName: Spell
+      Atk: 110
+      Def: 0
+      Spd: 0
+      Hp: 100
+      MaxHp: 100
+      Mp: 0
+      MaxMp: 100
+    - ID: 2005
+      Name: Spell +5
+      ItemType: Weapon
+      SpritName: Spell
+      Atk: 120
+      Def: 0
+      Spd: 1
+      Hp: 200
+      MaxHp: 200
+      Mp: 0
+      MaxMp: 100
+    - ID: 10000
+      Name: Potion
+      ItemType: Consumable
+      SpritName: Potion
+      Atk: 0
+      Def: 0
+      Spd: 0
+      Hp: 50
+      MaxHp: 0
+      Mp: 0
+      MaxMp: 0
+    - ID: 10001
+      Name: Leaf
+      ItemType: Consumable
+      SpritName: Leaf
+      Atk: 0
+      Def: 0
+      Spd: 0
+      Hp: 0
+      MaxHp: 0
+      Mp: 20
+      MaxMp: 0

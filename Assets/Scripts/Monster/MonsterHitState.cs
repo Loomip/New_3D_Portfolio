@@ -1,0 +1,89 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.AI;
+
+public class MonsterHitState : MonsterAttackableState
+{
+    IEnumerator DamagerCoolDoun()
+    {
+        Material[] materialsCopy = meshs.materials;
+
+        // 각 머티리얼의 색상을 변경
+        for (int i = 0; i < materialsCopy.Length; i++)
+        {
+            materialsCopy[i].color = Color.red;
+        }
+
+        meshs.materials = materialsCopy;
+
+        // 맞는 사운드
+        //SoundManager.instance.PlaySfx(e_Sfx.Hit);
+
+        yield return new WaitForSeconds(0.2f);
+
+        materialsCopy = meshs.materials;
+
+        // 각 머티리얼의 색상을 변경
+        for (int i = 0; i < materialsCopy.Length; i++)
+        {
+            materialsCopy[i].color = Color.white;
+        }
+
+        meshs.materials = materialsCopy;
+    }
+
+    public override void EnterState(e_MonsterState monsterState)
+    {
+        // 이동 중지
+        nav.isStopped = true;
+
+        StartCoroutine(DamagerCoolDoun());
+
+        if (monsterHp.hp <= 0)
+        {
+            // 사망 상태로 전환
+            controller.TransactionToState(e_MonsterState.Die);
+            return;
+        }
+    }
+
+    public override void UpdateState()
+    {
+        if (state.GetStat(e_StatType.Hp) <= 0)
+        {
+            controller.TransactionToState(e_MonsterState.Die);
+            return;
+        }
+
+        if (monsterHp.CanTakeDamage == false) return;
+
+        // 플레이어가 공격 가능 거리안에 들어왔다면
+        if (controller.GetPlayerDistance() <= attackDistance)
+        {
+            // 공격 상태로 전환
+            controller.TransactionToState(e_MonsterState.Attack);
+            return;
+        }
+
+        if (controller.GetPlayerDistance() <= detactDistance)
+        {
+            // 인식 범위에 들어온 경우
+            nav.speed = state.GetStat(e_StatType.Spd);
+
+            nav.SetDestination(controller.Player.transform.position);
+            return;
+        }
+
+        if (controller.GetPlayerDistance() > attackDistance)
+        {
+            controller.TransactionToState(e_MonsterState.Run);
+            return;
+        }
+    }
+
+    public override void ExitState()
+    {
+        StopCoroutine(DamagerCoolDoun());
+    }
+}

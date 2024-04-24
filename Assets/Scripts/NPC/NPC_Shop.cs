@@ -1,0 +1,210 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using TMPro;
+using Unity.VisualScripting;
+using UnityEngine;
+
+public class NPC_Shop : NPC_Base
+{
+    [Header("상점 UI")]
+    [SerializeField] private GameObject shopObject;
+    [SerializeField] private GameObject shopSlotPrefab;
+    [SerializeField] private Transform shopContent;
+    [SerializeField] private TextMeshProUGUI addText;
+    [SerializeField] private TextMeshProUGUI sellText;
+    [SerializeField] private TextMeshProUGUI closeText;
+
+    [Header("Player 인벤토리 UI")]
+    [SerializeField] private GameObject inventorySlotPrefab;
+    [SerializeField] private Transform inventoryContent;
+
+    private List<GameObject> shopSlots = new List<GameObject>(); // 생성된 슬롯을 저장할 리스트
+    private List<Slot> inventorySlots = new List<Slot>();
+    private ItemData playerSelectedItem; // Palyer 인벤에서 선택된 아이템
+    private Data_Shop.Param selectedItem; // 현재 선택된 아이템
+    private ShopSlot selectedSlot;
+    private Slot PlayerSlot;
+
+    [SerializeField] private bool shopOpen = false;
+
+    // 상점이 열려있는지 확인하는 메서드
+    public override bool IsShopOpen()
+    {
+        return shopOpen;
+    }
+
+    public void SetSelectedItem(Data_Shop.Param item)  // 선택된 아이템을 설정하는 함수
+    {
+        if (selectedSlot != null)
+        {
+            selectedSlot.Deselect();
+        }
+
+        selectedItem = item;
+        selectedSlot = shopSlots.Find(slot => slot.GetComponent<ShopSlot>().shopData == item).GetComponent<ShopSlot>();
+
+        if (selectedSlot != null)
+        {
+            selectedSlot.Select();
+        }
+    }
+
+    void PlayerInven()
+    {
+        // 플레이어의 아이템 목록을 가져옵니다.
+        List<Slot> playerSlots = InventoryManager.instance.SlotList;
+
+        for (int i = 0; i < playerSlots.Count; ++i)
+        {
+            // 슬롯에 플레이어의 아이템 데이터를 설정합니다.
+            PlayerSlot = Instantiate(inventorySlotPrefab, inventoryContent).GetComponent<Slot>();
+            PlayerSlot.SLOTINDEX = i;
+
+            // 생성된 슬롯을 리스트에 추가
+            inventorySlots.Add(PlayerSlot);
+        }
+    }
+
+    void RefreshIcon()
+    {
+        List<ItemData> dataList = InventoryManager.instance.GetItemList();
+
+        for (int i = 0; i < dataList.Count; i++)
+        {
+            if (InventoryManager.instance.GetItemList()[i] != null)
+            {
+                ItemData item = InventoryManager.instance.GetItemList()[i];
+                inventorySlots[i].Set_Icon(item);
+            }
+            else
+            {
+                inventorySlots[i].ClearSlot();
+            }
+        }
+    }
+
+    public override void OnInteract()
+    {
+        shopOpen = true;
+        shopObject.SetActive(shopOpen);
+
+        addText.text = DataManager.instance.GetWordData("Purchase");
+        sellText.text = DataManager.instance.GetWordData("Sell");
+        closeText.text = DataManager.instance.GetWordData("Exit");
+
+        RefreshIcon();
+
+        // 이전에 생성된 슬롯 제거
+        foreach (GameObject slot in shopSlots)
+        {
+            Destroy(slot);
+        }
+
+        shopSlots.Clear();
+
+        // 상점 데이터의 시트를 가져옵니다.
+        List<Data_Shop.Param> shopItems = DataManager.instance.GetAllShopItems();
+
+        foreach (Data_Shop.Param shopItem in shopItems)
+        {
+            // 상점 슬롯 프리팹을 복제하여 슬롯을 생성합니다.
+            GameObject shopSlotObject = Instantiate(shopSlotPrefab, shopContent);
+
+            // 슬롯에 상점 아이템 데이터를 설정합니다.
+            ShopSlot shopSlot = shopSlotObject.GetComponent<ShopSlot>();
+            shopSlot.SetShopData(shopItem, this);
+
+            // 생성된 슬롯을 리스트에 추가
+            shopSlots.Add(shopSlotObject);
+        }
+    }
+
+    // 사기 (버튼에 다는 기능)
+    public void Buy()
+    {
+        if (selectedItem != null)
+        {
+            // 아이템의 가격이 현재 골드보다 많은지 확인
+            if (selectedItem.AddPrise <= InventoryManager.instance.gold)
+            {
+                // 현재 골드에서 아이템의 가격을 차감
+                InventoryManager.instance.gold -= selectedItem.AddPrise;
+                InventoryManager.instance.Refresh_Gold(); // 골드 UI 업데이트
+
+                // 선택된 아이템 데이터로 새 아이템 생성
+                ItemData newItem = new ItemData();
+                newItem.id = selectedItem.ID;
+                ++newItem.amount;
+
+                // 새 아이템을 인벤토리에 추가
+                InventoryManager.instance.AddItem(newItem);
+
+                // 인벤토리 UI를 업데이트합니다.
+                RefreshIcon();
+            }
+            else
+            {
+                Debug.Log("돈이 없습니다.");
+            }
+        }
+        else
+        {
+            Debug.Log("상점에서 아이템이 선택되어지지 않았습니다.");
+        }
+    }
+
+    // 팔기 (버튼에 다는 기능)
+    public void Sell()
+    {
+        // 선택된 아이템이 있는지 확인합니다.
+        if (playerSelectedItem != null)
+        {
+            Data_Shop.Param prise = DataManager.instance.GetShopData(playerSelectedItem.id);
+
+            // 현재 골드에 아이템의 가격을 더해줍니다.
+            InventoryManager.instance.gold += prise.SalePrise;
+            InventoryManager.instance.Refresh_Gold(); // 골드 UI 업데이트
+
+            // 인벤토리에서 아이템을 제거합니다.
+            List<ItemData> items = InventoryManager.instance.GetItemList();
+            ItemData itemToRemove = items.Find(item => item.id == playerSelectedItem.id);
+            if (itemToRemove != null)
+            {
+                // 아이템의 개수 감소
+                itemToRemove.amount -= 1;
+
+                // 아이템의 개수가 0이 되면 인벤토리에서 아이템 제거
+                if (itemToRemove.amount <= 0)
+                {
+                    InventoryManager.instance.RemoveItem(itemToRemove);
+                    playerSelectedItem = null;
+                }
+            }
+
+            // 인벤토리 UI를 업데이트합니다.
+            RefreshIcon();
+        }
+        else
+        {
+            Debug.Log("인벤토리에 선택되어진 아이템이 없습니다.");
+        }
+    }
+
+    //나가기 (버튼에 다는 기능)
+    public void Close()
+    {
+        shopOpen = false;
+        shopObject.SetActive(shopOpen);
+    }
+
+    private void Start()
+    {
+        PlayerInven();
+    }
+
+    private void Update()
+    {
+        RefreshIcon();
+    }
+}

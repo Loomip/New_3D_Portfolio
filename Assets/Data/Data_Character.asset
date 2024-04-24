@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 8
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77d315972c55a9d41982df0f8039472a, type: 3}
+  m_Name: Data_Character
+  m_EditorClassIdentifier: 
+  sheets:
+  - name: Sheet1
+    list:
+    - Name: Player
+      Atk: 100
+      Def: 50
+      Spd: 5
+      Hp: 1000
+      MaxHp: 1000
+      Mp: 100
+      MaxMp: 100
+    - Name: Enemy1
+      Atk: 60
+      Def: 25
+      Spd: 2
+      Hp: 500
+      MaxHp: 500
+      Mp: 0
+      MaxMp: 0
+    - Name: Enemy2
+      Atk: 70
+      Def: 35
+      Spd: 3
+      Hp: 600
+      MaxHp: 600
+      Mp: 0
+      MaxMp: 0
+    - Name: Boss
+      Atk: 200
+      Def: 80
+      Spd: 5
+      Hp: 5000
+      MaxHp: 5000
+      Mp: 0
+      MaxMp: 0

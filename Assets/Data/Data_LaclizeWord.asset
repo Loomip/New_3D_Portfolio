@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 8
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e08826c6a98acd340a66c3fa17aea2f2, type: 3}
+  m_Name: Data_LaclizeWord
+  m_EditorClassIdentifier: 
+  sheets:
+  - name: Sheet1
+    list:
+    - Type: None
+      Kor: 
+    - Type: Title
+      Kor: "\uC790\uAC01\uBABD(\uAC00\uC81C) : Lucid Dream"
+    - Type: Quest
+      Kor: "\uD018\uC2A4\uD2B8"
+    - Type: Equip
+      Kor: "\uC7A5\uBE44"
+    - Type: Collection
+      Kor: "\uC218\uC9D1"
+    - Type: Enhance
+      Kor: "\uAC15\uD654"
+    - Type: Option
+      Kor: "\uC635\uC158"
+    - Type: Likability
+      Kor: "\uD638\uAC10\uB3C4"
+    - Type: Material
+      Kor: "\uC7AC\uB8CC"
+    - Type: Sell
+      Kor: "\uD310\uB9E4\uD558\uAE30"
+    - Type: Purchase
+      Kor: "\uAD6C\uB9E4\uD558\uAE30"
+    - Type: Use
+      Kor: "\uC0AC\uC6A9\uD558\uAE30"
+    - Type: Wear
+      Kor: "\uCC29\uC6A9\uD558\uAE30"
+    - Type: Unbind
+      Kor: "\uD574\uC81C\uD558\uAE30"
+    - Type: Complete
+      Kor: "\uC644\uB8CC!"
+    - Type: Start
+      Kor: "\uC2DC\uC791\uD558\uAE30"
+    - Type: Exit
+      Kor: "\uB098\uAC00\uAE30"
+    - Type: BGM
+      Kor: "\uBC30\uACBD\uC74C"
+    - Type: SFX
+      Kor: "\uD6A8\uACFC\uC74C"
+    - Type: Mute
+      Kor: "\uC74C\uC18C\uAC70"
+    - Type: Success
+      Kor: "\uC131\uACF5\uD588\uC5B4\uC694! "
+    - Type: Failed
+      Kor: "\uC2E4\uD328\uD588\uC5B4\uC694 .."
+    - Type: Max
+      Kor: "\uCD5C\uB300 \uAC15\uD654 \uC785\uB2C8\uB2E4."
+    - Type: Create
+      Kor: "\uC0DD\uC131\uD558\uAE30"
+    - Type: Discard
+      Kor: "\uBC84\uB9AC\uAE30"
