@@ -25,6 +25,9 @@ public abstract class BossState : MonoBehaviour
     // 체력 컴포넌트
     protected Health monsterHp;
 
+    // 보스룸 컴포넌트 
+    protected BossGround bossGround;
+
     // 몬스터 상태 관련 인터페이스(문법아님) 메소드 선언
 
     // 몬스터 상태 시작 (다른상태로 전이됨) 메소드
@@ -44,5 +47,6 @@ public abstract class BossState : MonoBehaviour
         monsterHp = GetComponent<Health>();
         animator = GetComponent<Animator>();
         meshs = GetComponentInChildren<SkinnedMeshRenderer>();
+        bossGround = FindObjectOfType<BossGround>();
     }
 }

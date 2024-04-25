@@ -20,15 +20,18 @@ public class Door : MonoBehaviour
 
     private void Start()
     {
-        closedPosition = new Vector3(transform.position.x, 0f, transform.position.z);
+        closedPosition = new Vector3(transform.position.x, transform.position.y, transform.position.z);
         openPosition = new Vector3(transform.position.x, 10f, transform.position.z);
     }
+
+    public bool isOpening = false;
+    public bool isClosing = false;
 
     public void CloseDoor()
     {
         if (!isDoorClosed)
         {
-            StartCoroutine(CloseDoorCoroutine());
+            isClosing = true;
             isDoorClosed = true;
         }
     }
@@ -37,33 +40,30 @@ public class Door : MonoBehaviour
     {
         if (isDoorClosed)
         {
-            StartCoroutine(OpenDoorCoroutine());
+            isOpening = true;
             isDoorClosed = false;
         }
     }
 
-    private IEnumerator OpenDoorCoroutine()
+    private void Update()
     {
-        // 문을 열음
-        while (Vector3.Distance(transform.position, openPosition) > 0.01f)
+        if (isOpening)
         {
             transform.position = Vector3.Lerp(transform.position, openPosition, openSpeed * Time.deltaTime);
-            yield return null;
+            if (Vector3.Distance(transform.position, openPosition) <= 0.01f)
+            {
+                transform.position = openPosition;
+                isOpening = false;
+            }
         }
-
-        transform.position = openPosition;
-    }
-
-    private IEnumerator CloseDoorCoroutine()
-    {
-        // 문을 닫음
-        while (Vector3.Distance(transform.position, closedPosition) > 0.01f)
+        else if (isClosing)
         {
             transform.position = Vector3.Lerp(transform.position, closedPosition, openSpeed * Time.deltaTime);
-            yield return null;
+            if (Vector3.Distance(transform.position, closedPosition) <= 0.01f)
+            {
+                transform.position = closedPosition;
+                isClosing = false;
+            }
         }
-
-        transform.position = closedPosition;
     }
-
 }

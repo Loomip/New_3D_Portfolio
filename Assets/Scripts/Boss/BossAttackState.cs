@@ -31,7 +31,7 @@ public class BossAttackState : BossAttackableState
         Bullet bullets = intantBullet.GetComponent<Bullet>();
 
         // 총알 발사 속도
-        bulletRigid.velocity = bulletPos.forward * 10f;
+        bulletRigid.velocity = bulletPos.forward * 20f;
 
         bullets.Atk = atk;
     }

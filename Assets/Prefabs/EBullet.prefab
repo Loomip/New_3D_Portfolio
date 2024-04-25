@@ -187,6 +187,7 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 64
-  hitLayerName: Player
+  hitLayerNames:
+  - Player
   speed: 100
   isTargetSet: 0

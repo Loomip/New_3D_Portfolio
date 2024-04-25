@@ -48,19 +48,33 @@ public class CharacterState : MonoBehaviour
     public void AddStat(e_StatType statType, int value)
     {
         int max = (statType == e_StatType.Hp) ? GetStat(e_StatType.MaxHp) :
-               (statType == e_StatType.Mp) ? GetStat(e_StatType.MaxMp) :
-               Consts.MAX_STAT;
+            (statType == e_StatType.Mp) ? GetStat(e_StatType.MaxMp) :
+            Consts.MAX_STAT;
         characterStats[statType] += value;
         characterStats[statType] = Mathf.Clamp(characterStats[statType], 0, max);
+
+        // MaxHP 또는 MaxMP가 증가하면 HP 또는 MP도 증가
+        if (statType == e_StatType.MaxHp || statType == e_StatType.MaxMp)
+        {
+            e_StatType currentStatType = (statType == e_StatType.MaxHp) ? e_StatType.Hp : e_StatType.Mp;
+            characterStats[currentStatType] += value;
+        }
     }
 
     public void RemoveStat(e_StatType statType, int value)
     {
-        int max = (statType == e_StatType.Hp) ? GetStat(e_StatType.MaxHp) :
-                (statType == e_StatType.Mp) ? GetStat(e_StatType.MaxMp) :
-                Consts.MAX_STAT;
         characterStats[statType] -= value;
-        characterStats[statType] = Mathf.Clamp(characterStats[statType], 0, max);
+        if (statType == e_StatType.MaxHp)
+        {
+            characterStats[e_StatType.Hp] = Mathf.Min(characterStats[e_StatType.Hp], characterStats[e_StatType.MaxHp]);
+        }
+        else
+        {
+            int max = (statType == e_StatType.Hp) ? GetStat(e_StatType.MaxHp) :
+                    (statType == e_StatType.Mp) ? GetStat(e_StatType.MaxMp) :
+                    Consts.MAX_STAT;
+            characterStats[statType] = Mathf.Clamp(characterStats[statType], 0, max);
+        }
     }
 
 }

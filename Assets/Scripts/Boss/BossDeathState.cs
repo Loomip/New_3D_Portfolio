@@ -31,6 +31,7 @@ public class BossDeathState : BossAttackableState
         {
             // ∏ÛΩ∫≈Õ∞° º“∏Íµ 
             //Instantiate(destroyParticlePrefab, transform.position, Quaternion.identity);
+            bossGround.MonsterDied();
             Destroy(gameObject);
         }
     }

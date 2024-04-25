@@ -8,19 +8,32 @@ public class HuntingGround : MonoBehaviour
     [SerializeField] private Transform[] wanderPoints;
     public Transform[] WanderPoints { get => wanderPoints; set => wanderPoints = value; }
 
-    [SerializeField] private List<GameObject> effectPrefabs;  // 소환 이팩트
-    [SerializeField] private List<GameObject> monsterPrefabs; // 몬스터
-    [SerializeField] private Door doorin;               // 문 오브젝트
-    [SerializeField] private Door doorOut;              // 문 오브젝트
-    [SerializeField] private BoxCollider zone;                // 구역의 BoxCollider
-    [SerializeField] private float effectAppearTime = 2.0f;   // 소환 이팩트가 나타나는 시간
+    // 랜덤 소환 이팩트
+    [SerializeField] private List<GameObject> effectPrefabs;
+    // 랜덤으로 등장할 몬스터
+    [SerializeField] private List<GameObject> monsterPrefabs;
+    // 입구 오브젝트
+    [SerializeField] private Door doorin;
+    // 출구 오브젝트
+    [SerializeField] private Door doorOut;
+    // Player를 탐지할 BoxCollider
+    [SerializeField] private BoxCollider zone;
+    // 소환 이팩트가 나타나는 시간
+    [SerializeField] private float effectAppearTime = 2.0f;
 
-    [SerializeField] private Vector3 spawnAreaCenter; // 몬스터 스폰 영역 중심 위치
-    [SerializeField] private Vector3 spawnAreaSize;   // 몬스터 스폰 영역 크기
+    // 몬스터 스폰 영역 중심 위치
+    [SerializeField] private Vector3 spawnAreaCenter;
+    // 몬스터 스폰 영역 크기
+    [SerializeField] private Vector3 spawnAreaSize;
 
-    [SerializeField] private int monstersToClear = 10; // 클리어하기 위해 필요한 몬스터 수
+    // 클리어하기 위해 필요한 몬스터 수
+    [SerializeField] private int monstersToClear = 10; 
 
+    // 소환 될 몬스터를 담아 클리어를 판단할 리스트
     [SerializeField] private List<GameObject> enemyList = new List<GameObject>();
+
+    // 맵 재시작 방지 
+    private bool isGroundStart = false;
 
     // 몬스터에게 배회위치를 넘겨줄 메소드
     public Transform[] GetWanderPoints()
@@ -137,10 +150,11 @@ public class HuntingGround : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        Debug.Log("탐지됨");
+        if (other.CompareTag("Player") || !isGroundStart)
         {
             StartCoroutine(AppearEffectAndSpawn());
-
+            isGroundStart = true;
             // 몬스터 소환 등의 로직 실행
             doorin.CloseDoor();
         }

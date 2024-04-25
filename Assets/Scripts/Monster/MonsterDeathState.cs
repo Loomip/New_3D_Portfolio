@@ -11,15 +11,15 @@ public class MonsterDeathState : MonsterState
     // 죽엇을때 나오는 레그돌 모델
     [SerializeField] private GameObject ragdoll;
 
-    // 레그돌이 날아갈 힘
-    [SerializeField] private float backPos;
-
     // 사망 완료 처리 시간
     [SerializeField] protected float time;
     [SerializeField] protected float deathDelayTime;
 
     // 사망 처리 이펙트
     [SerializeField] protected GameObject destroyParticlePrefab;
+
+    // 사라질때 이팩트가 나올 위치
+    [SerializeField] private Transform effectPos;
 
     private void CopyCharacterTransformToRagdoll(Transform origin, Transform ragdoll)
     {
@@ -46,11 +46,6 @@ public class MonsterDeathState : MonsterState
 
         // 레그돌 모델 생성
         ragdoll.SetActive(true);
-
-        foreach (Rigidbody rb in ragdoll.GetComponentsInChildren<Rigidbody>())
-        {
-            rb.AddForce(-ragdoll.transform.forward, ForceMode.Impulse);
-        }
     }
 
     public override void UpdateState()
@@ -60,9 +55,8 @@ public class MonsterDeathState : MonsterState
         // 사망 처리 지연시간이 지났다면
         if (time >= deathDelayTime)
         {
-            // 몬스터가 소멸됨
-            //Instantiate(destroyParticlePrefab, ragdoll.transform.position, Quaternion.identity);
-            ground.MonsterDied(this);
+            huntingGround.MonsterDied(this);
+            Instantiate(destroyParticlePrefab, effectPos.position, destroyParticlePrefab.transform.rotation);
             Destroy(gameObject);
         }
     }

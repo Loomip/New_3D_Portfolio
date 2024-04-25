@@ -17,7 +17,7 @@ MonoBehaviour:
     list:
     - Name: Player
       Atk: 100
-      Def: 50
+      Def: 40
       Spd: 5
       Hp: 1000
       MaxHp: 1000
@@ -40,7 +40,7 @@ MonoBehaviour:
       Mp: 0
       MaxMp: 0
     - Name: Boss
-      Atk: 200
+      Atk: 150
       Def: 80
       Spd: 5
       Hp: 5000
