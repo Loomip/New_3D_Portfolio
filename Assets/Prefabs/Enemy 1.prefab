@@ -11804,7 +11804,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1bc3cbed2eb7234c8d1a0c9794b3d63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hpState: {fileID: 0}
+  state: {fileID: 6314141386152811288}
+  healthBarPrefab: {fileID: 7091954315217879690, guid: 037400e0e4af78443b4f11bcbddeac10,
+    type: 3}
   damageCooldown: 0.1
 --- !u!114 &6314141386152811293
 MonoBehaviour:

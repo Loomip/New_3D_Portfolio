@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIManager : SingletonDontDestroy<UIManager>
 {
@@ -55,10 +56,50 @@ public class UIManager : SingletonDontDestroy<UIManager>
     }
 
     // 상호작용 오브젝트를 끔
-    public void CloseDoor()
+    private void CloseDoor()
     {
         openDoorUI.SetActive(false);
     }
+
+    //===================================================================================================
+
+    [Header("UI")]
+    [SerializeField] private Slider playerHp;
+    [SerializeField] private Slider playerMp;
+    [SerializeField] private Slider bossHp;
+
+    [SerializeField] private Dictionary<Health, Slider> enemyHealthBars = new Dictionary<Health, Slider>();
+
+    public void RegisterEnemyHealthBar(Health enemyHealth, Slider healthBar)
+    {
+        enemyHealthBars[enemyHealth] = healthBar;
+    }
+
+    public void RefreshHp(string tag, Health entity)
+    {
+        switch (tag)
+        {
+            case "Player":
+                playerHp.value = (float)entity.hp / entity.State.GetStat(e_StatType.MaxHp);
+                break;
+            case "Enemy":
+                // 딕셔너리에서 체력바를 찾습니다.
+                if (enemyHealthBars.TryGetValue(entity, out Slider enemyHp))
+                {
+                    enemyHp.value = (float)entity.hp / entity.State.GetStat(e_StatType.MaxHp);
+                }
+                break;
+            case "Boss":
+                bossHp.value = (float)entity.hp / entity.State.GetStat(e_StatType.MaxHp);
+                break;
+        }
+    }
+
+    public void RefreshPlayerMp(Health entity)
+    {
+        playerMp.value = (float)entity.mp / entity.State.GetStat(e_StatType.MaxMp);
+    }
+
 
     private void Start()
     {
