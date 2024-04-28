@@ -34,6 +34,7 @@ public class HuntingGround : MonoBehaviour
 
     // 맵 재시작 방지 
     private bool isGroundStart = false;
+    public bool IsGroundStart { get => isGroundStart; set => isGroundStart = value; }
 
     // 몬스터에게 배회위치를 넘겨줄 메소드
     public Transform[] GetWanderPoints()
@@ -151,10 +152,10 @@ public class HuntingGround : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log("탐지됨");
-        if (other.CompareTag("Player") || !isGroundStart)
+        if (other.CompareTag("Player") || !IsGroundStart)
         {
             StartCoroutine(AppearEffectAndSpawn());
-            isGroundStart = true;
+            IsGroundStart = true;
             // 몬스터 소환 등의 로직 실행
             doorin.CloseDoor();
         }

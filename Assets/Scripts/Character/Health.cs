@@ -44,7 +44,7 @@ public class Health : MonoBehaviour
         if (gameObject.tag == "Enemy")
         {
             GameObject healthBarObject = Instantiate(healthBarPrefab, transform.position + Vector3.up * 2, Quaternion.identity, transform);
-            Slider healthBar = healthBarObject.GetComponent<Slider>();
+            Slider healthBar = healthBarObject.GetComponentInChildren<Slider>();
 
             UIManager.instance.RegisterEnemyHealthBar(this, healthBar);
         }

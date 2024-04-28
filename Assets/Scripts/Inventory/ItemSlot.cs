@@ -165,11 +165,11 @@ public class ItemSlot : MonoBehaviour
             {
                 case "Potion":
                     player.AddStat(e_StatType.Hp, status.Hp);
-                    // UIManager.instance.Refresh_HP(player);
+                    UIManager.instance.RefreshHp(player.tag, player.GetComponent<Health>());
                     break;
                 case "Leaf":
                     player.AddStat(e_StatType.Mp, status.Mp);
-                    // UIManager.instance.Refresh_Mp(player);
+                    UIManager.instance.RefreshPlayerMp(player.GetComponent<Health>());
                     break;
             }
         }

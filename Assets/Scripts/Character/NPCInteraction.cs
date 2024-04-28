@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class NPCInteraction : MonoBehaviour
 {
+    [SerializeField] GroundController GC;
+
     //상호작용 키
     void NPCInteract()
     {
@@ -12,7 +14,7 @@ public class NPCInteraction : MonoBehaviour
             InteractWithCurrentTarget();
         }
 
-        if(Input.GetKeyUp(KeyCode.E))
+        if(Input.GetKeyUp(KeyCode.E) && !GC.Ground.IsGroundStart)
         {
             OpenDoorControl();
         }

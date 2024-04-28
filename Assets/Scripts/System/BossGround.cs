@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BossGround : MonoBehaviour
 {
@@ -12,6 +14,8 @@ public class BossGround : MonoBehaviour
     [SerializeField] private Door doorin;
     // Player를 탐지할 BoxCollider
     [SerializeField] private BoxCollider zone;
+    // 보스 방 진입시 등장할 HP
+    [SerializeField] private GameObject bossHp;
 
     // 보스 소환 위치
     [SerializeField] private Vector3 spawnAreaCenter;
@@ -49,6 +53,9 @@ public class BossGround : MonoBehaviour
         {
             StartCoroutine(AppearEffectAndSpawn());
             isGroundStart = true;
+            bossHp.SetActive(true);
+            bossHp.GetComponentInChildren<TextMeshProUGUI>().text = bossPrefabs.name;
+
         }
     }
 }
