@@ -18,8 +18,8 @@ public class MonsterDeathState : MonsterState
     // 사망 처리 이펙트
     [SerializeField] protected GameObject destroyParticlePrefab;
 
-    // 사라질때 이팩트가 나올 위치
-    [SerializeField] private Transform effectPos;
+    // 이펙트 생성 위치
+    [SerializeField] protected Transform effectPos;
 
     private void CopyCharacterTransformToRagdoll(Transform origin, Transform ragdoll)
     {
