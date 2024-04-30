@@ -22,6 +22,12 @@ public class MoveController : MonoBehaviour
     // 위치
     private Vector3 velocity;
 
+    // 플레이어 위치
+    private Vector3 movement;
+
+    // 회피 방향을 담을 위치
+    private Vector3 avoidPos;
+
     // 무기를 들었는지
     private bool isWeaponEquipped = false;
 
@@ -56,28 +62,7 @@ public class MoveController : MonoBehaviour
         direction.Normalize(); // 방향 벡터를 정규화함
 
         // 이동 벡터를 설정
-        Vector3 movement = direction * speed * Time.deltaTime;
-
-        if (Input.GetKeyDown(KeyCode.Space) && health.CanTakeDamage)
-        {
-            health.CanTakeDamage = false;
-
-            // 회피 방향 설정
-            movement = transform.forward;
-
-            // 회피 동작 중 스피드 적용
-            int dodgeSpeed = characterState.GetStat(e_StatType.Spd) * 2;
-
-            characterState.SetStat(e_StatType.Spd, dodgeSpeed);
-
-            animator.SetTrigger("isAvoid");
-
-            // 회피 동작 지속 시간
-            float dodgeDuration = 0.8f;
-
-            // 일정 시간 후 스피드를 다시 원래 값으로 돌리는 코루틴 시작
-            StartCoroutine(ResetSpeedAfterDelay(characterState.GetStat(e_StatType.Spd) / 2, dodgeDuration));
-        }
+        movement = direction * speed * Time.deltaTime;
 
         // 캐릭터 컨트롤러를 이용한 이동을 수행
         controller.Move(movement);
@@ -93,6 +78,30 @@ public class MoveController : MonoBehaviour
         }
     }
 
+    private void Avoid()
+    {
+        if (Input.GetKeyDown(KeyCode.Space) && health.CanTakeDamage)
+        {
+            health.CanTakeDamage = false;
+
+            // 회피 방향 설정
+            avoidPos = transform.forward;
+
+            // 회피 동작 중 스피드 적용
+            int dodgeSpeed = characterState.GetStat(e_StatType.Spd) * 2;
+
+            characterState.SetStat(e_StatType.Spd, dodgeSpeed);
+
+            animator.SetTrigger("isAvoid");
+
+            // 회피 동작 지속 시간
+            float dodgeDuration = 0.8f;
+
+            // 일정 시간 후 스피드를 다시 원래 값으로 돌리는 코루틴 시작
+            StartCoroutine(ResetSpeedAfterDelay(characterState.GetStat(e_StatType.Spd) / 2, dodgeDuration));
+        }
+    }
+
     IEnumerator ResetSpeedAfterDelay(int originalSpeed, float delay)
     {
         yield return new WaitForSeconds(delay);
@@ -104,6 +113,7 @@ public class MoveController : MonoBehaviour
     void Update()
     {
         Move();
+        Avoid();
 
         if (controller.isGrounded == false)
         {
