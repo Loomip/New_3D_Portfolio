@@ -149,7 +149,7 @@ public class ItemSlot : MonoBehaviour
             case "Spell":
                 return e_Weapon.Spell;
             default:
-                MoveController.isWeaponEquipped = false;
+                MoveController.IsWeaponEquipped = false;
                 return e_Weapon.None;
         }
     }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -31,7 +32,7 @@ public class Health : MonoBehaviour
         set => State.SetStat(e_StatType.Def, value);
     }
 
-    // 무적 시간 
+    // 데미지 쿨시간 
     [SerializeField] private float damageCooldown;
 
     // 맞았는지 
@@ -45,7 +46,8 @@ public class Health : MonoBehaviour
         {
             GameObject healthBarObject = Instantiate(healthBarPrefab, transform.position + Vector3.up * 2, Quaternion.identity, transform);
             Slider healthBar = healthBarObject.GetComponentInChildren<Slider>();
-
+            TextMeshProUGUI name = healthBarObject.GetComponentInChildren<TextMeshProUGUI>();
+            name.text = State.CharacterName;
             UIManager.instance.RegisterEnemyHealthBar(this, healthBar);
         }
     }

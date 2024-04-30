@@ -23,11 +23,12 @@ public class BossGround : MonoBehaviour
     // 맵 재시작 방지 
     private bool isGroundStart = false;
 
+    public bool IsGroundStart { get => isGroundStart; set => isGroundStart = value; }
 
     public void MonsterDied()
     {
         doorin.OpenDoor(); // 문을 염
-
+        IsGroundStart = false;
         // 클리어 될때 나올 기능
         Debug.Log("구역 클리어!");
     }
@@ -49,13 +50,14 @@ public class BossGround : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") || !isGroundStart)
+        if (other.CompareTag("Player") || !IsGroundStart)
         {
-            StartCoroutine(AppearEffectAndSpawn());
-            isGroundStart = true;
-            bossHp.SetActive(true);
-            bossHp.GetComponentInChildren<TextMeshProUGUI>().text = bossPrefabs.name;
+            string CharacterName = bossPrefabs.GetComponent<CharacterState>().CharacterName;
 
+            StartCoroutine(AppearEffectAndSpawn());
+            IsGroundStart = true;
+            bossHp.SetActive(true);
+            bossHp.GetComponentInChildren<TextMeshProUGUI>().text = CharacterName;
         }
     }
 }

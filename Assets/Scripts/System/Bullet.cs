@@ -99,7 +99,7 @@ public class Bullet : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         // hitLayerName에 해당하는 레이어에 있는 오브젝트가 있는지 확인
-        if (other != null && hitLayerNames.Contains(LayerMask.LayerToName(other.gameObject.layer)))
+        if ((other != null && hitLayerNames.Contains(LayerMask.LayerToName(other.gameObject.layer))) || other.tag == "Ground")
         {
             // 해당 오브젝트의 Health 컴포넌트를 가져옴
             Health targetHealth = other.gameObject.GetComponent<Health>();

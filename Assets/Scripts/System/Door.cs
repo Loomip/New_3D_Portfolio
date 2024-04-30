@@ -15,8 +15,7 @@ public class Door : MonoBehaviour
     // 문이 열린 위치
     private Vector3 openPosition; 
 
-    // 문이 닫혀 있는지
-    private bool isDoorClosed = true;
+
 
     private void Start()
     {
@@ -24,8 +23,10 @@ public class Door : MonoBehaviour
         openPosition = new Vector3(transform.position.x, 10f, transform.position.z);
     }
 
-    public bool isOpening = false;
-    public bool isClosing = false;
+    // 문이 닫혀 있는지
+    private bool isDoorClosed = true;
+    [SerializeField] private bool isOpening = false;
+    [SerializeField] private bool isClosing = false;
 
     public void CloseDoor()
     {

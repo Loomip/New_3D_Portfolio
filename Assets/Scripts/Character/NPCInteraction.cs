@@ -14,7 +14,7 @@ public class NPCInteraction : MonoBehaviour
             InteractWithCurrentTarget();
         }
 
-        if(Input.GetKeyUp(KeyCode.E) && !GC.Ground.IsGroundStart)
+        if(Input.GetKeyUp(KeyCode.E) && !GC.HuntiogGround.IsGroundStart && !GC.BossGround.IsGroundStart)
         {
             OpenDoorControl();
         }

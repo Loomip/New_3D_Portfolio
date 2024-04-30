@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class CharacterState : MonoBehaviour
 {
-    public string characterName; // 캐릭터 이름
+    [SerializeField] private string characterName; // 캐릭터 이름
+    public string CharacterName { get => characterName; set => characterName = value; }
+
     private Dictionary<e_StatType, int> characterStats; // 캐릭터의 스탯을 저장
 
     void Start()
@@ -16,7 +18,7 @@ public class CharacterState : MonoBehaviour
     void InitCharacterStats()
     {
         // DataManager를 사용하여 이 캐릭터의 스탯 데이터를 가져옴
-        Data_Character.Param stats = DataManager.instance.GetCharacterData(characterName);
+        Data_Character.Param stats = DataManager.instance.GetCharacterData(CharacterName);
 
         // 스탯 데이터를 사전에 저장
         characterStats = new Dictionary<e_StatType, int>

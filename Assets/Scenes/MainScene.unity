@@ -38448,7 +38448,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 666672655}
-  m_LocalRotation: {x: 0.14785585, y: -0.00000001701727, z: 0.000000002544065, w: 0.98900896}
+  m_LocalRotation: {x: 0.14785586, y: 0.000000017017262, z: -0.0000000025440636, w: 0.98900896}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -113425,7 +113425,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb88965a6948fdb4daffead38c01da4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ground: {fileID: 248214170}
+  huntingGround: {fileID: 248214170}
+  bossGround: {fileID: 1490541950}
 --- !u!1 &1519955037
 GameObject:
   m_ObjectHideFlags: 0
@@ -115934,7 +115935,6 @@ MonoBehaviour:
   animator: {fileID: 0}
   camLookPoint: {fileID: 330585546}
   rotateSpeed: 720
-  isWeaponEquipped: 0
 --- !u!114 &1916322935
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -118922,7 +118922,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -50.00116, y: -50}
+  m_AnchoredPosition: {x: -50.00128, y: -50}
   m_SizeDelta: {x: -1104.187, y: -100}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &1983105498303550007
@@ -123731,6 +123731,7 @@ GameObject:
   - component: {fileID: 993955129515037398}
   - component: {fileID: 5668650589376638361}
   - component: {fileID: 5668650589376638362}
+  - component: {fileID: 5668650589376638363}
   m_Layer: 6
   m_Name: Modal
   m_TagString: Player
@@ -123775,6 +123776,19 @@ MonoBehaviour:
   weaponTransfom: {fileID: 0}
   bulletPos: {fileID: 239981596}
   bullet: {fileID: 3609422001887503705, guid: 2b8a98b6cc8348f468b677a9fa23061e, type: 3}
+--- !u!114 &5668650589376638363
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5668650589376638357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a79722f7692ee74dad472b36f6a3320, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isAvoid: {fileID: 1916322939}
 --- !u!4 &5704461079897068614
 Transform:
   m_ObjectHideFlags: 0

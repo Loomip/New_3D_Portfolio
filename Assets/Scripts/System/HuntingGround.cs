@@ -115,7 +115,7 @@ public class HuntingGround : MonoBehaviour
             doorin.OpenDoor(); // 문을 염
             doorOut.OpenDoor(); // 문을 염
 
-            Debug.Log("구역 클리어!");
+            isGroundStart = false;
 
             // 클리어 후에는 초기화 또는 다음 동작을 수행하는 등의 로직 추가
         }
@@ -151,7 +151,6 @@ public class HuntingGround : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("탐지됨");
         if (other.CompareTag("Player") || !IsGroundStart)
         {
             StartCoroutine(AppearEffectAndSpawn());
@@ -159,7 +158,6 @@ public class HuntingGround : MonoBehaviour
             // 몬스터 소환 등의 로직 실행
             doorin.CloseDoor();
         }
-
     }
 
     // 원 소환 영역 표시

@@ -1,41 +1,41 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class MoveController : MonoBehaviour
 {
     // 애니메이터 컴포넌트
     public Animator animator;
-
     // 캐릭터 컨트롤러 컴포넌트
     private CharacterController controller;
-
     // 캐릭터 스테이트 컴포넌트
     private CharacterState characterState;
-
     // 카메라 참조 위치
     [SerializeField] private Transform camLookPoint;
-
     // 이동 속도
     private float speed;
-
     // 회전 속도
     [SerializeField] private float rotateSpeed;
-
     // 중력값
     private float gravity = 9.8f;
-
     // 위치
     private Vector3 velocity;
 
     // 무기를 들었는지
-    public bool isWeaponEquipped = false;
+    private bool isWeaponEquipped = false;
+
+    public bool IsWeaponEquipped { get => isWeaponEquipped; set => isWeaponEquipped = value; }
+
+    // 체력 컴포넌트
+    private Health health;
 
     void Start()
     {
         controller = GetComponent<CharacterController>();
         characterState = GetComponent<CharacterState>();
         animator = GetComponentInChildren<Animator>();
+        health = GetComponent<Health>();
     }
 
     public void Move()
@@ -58,6 +58,27 @@ public class MoveController : MonoBehaviour
         // 이동 벡터를 설정
         Vector3 movement = direction * speed * Time.deltaTime;
 
+        if (Input.GetKeyDown(KeyCode.Space) && health.CanTakeDamage)
+        {
+            health.CanTakeDamage = false;
+
+            // 회피 방향 설정
+            movement = transform.forward;
+
+            // 회피 동작 중 스피드 적용
+            int dodgeSpeed = characterState.GetStat(e_StatType.Spd) * 2;
+
+            characterState.SetStat(e_StatType.Spd, dodgeSpeed);
+
+            animator.SetTrigger("isAvoid");
+
+            // 회피 동작 지속 시간
+            float dodgeDuration = 0.8f;
+
+            // 일정 시간 후 스피드를 다시 원래 값으로 돌리는 코루틴 시작
+            StartCoroutine(ResetSpeedAfterDelay(characterState.GetStat(e_StatType.Spd) / 2, dodgeDuration));
+        }
+
         // 캐릭터 컨트롤러를 이용한 이동을 수행
         controller.Move(movement);
 
@@ -70,6 +91,14 @@ public class MoveController : MonoBehaviour
             // 캐릭터를 회전함
             transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotateSpeed * Time.deltaTime);
         }
+    }
+
+    IEnumerator ResetSpeedAfterDelay(int originalSpeed, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        // 스피드를 원래 값으로 돌립니다.
+        characterState.SetStat(e_StatType.Spd, originalSpeed);
     }
 
     void Update()
