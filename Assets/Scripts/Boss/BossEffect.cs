@@ -2,13 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Effect : MonoBehaviour
+public class BossEffect : MonoBehaviour
 {
-    public int Atk
-    {
-        get;
-        set;
-    }
+    private int atk;
+    public int Atk { get => atk; set => atk = value; }
 
     private ParticleSystem particleSystem;
 

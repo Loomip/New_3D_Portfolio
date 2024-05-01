@@ -9,6 +9,7 @@ public class MonsterHitState : MonsterAttackableState
 
     IEnumerator DamagerCoolDoun()
     {
+
         Material[] materialsCopy = meshs.materials;
 
         // 각 머티리얼의 색상을 변경
@@ -40,10 +41,13 @@ public class MonsterHitState : MonsterAttackableState
 
     public override void EnterState(e_MonsterState monsterState)
     {
-        // 이동 중지
-        nav.isStopped = true;
+        if (monsterHp.CanTakeDamage)
+        {
+            // 이동 중지
+            nav.isStopped = true;
 
-        StartCoroutine(DamagerCoolDoun());
+            StartCoroutine(DamagerCoolDoun());
+        }
 
         if (monsterHp.hp <= 0)
         {

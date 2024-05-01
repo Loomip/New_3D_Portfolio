@@ -13,10 +13,10 @@ GameObject:
   - component: {fileID: 6329231017710501662}
   - component: {fileID: 1717081417760206930}
   - component: {fileID: 1310580996359202405}
-  - component: {fileID: 2796390826911621906}
-  m_Layer: 14
-  m_Name: Bead_Skill
-  m_TagString: Skill
+  - component: {fileID: 1719123571998326915}
+  m_Layer: 0
+  m_Name: RangedSkill
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4793,7 +4793,7 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 3
   m_Center: {x: 0.0016983747, y: 0.018595457, z: 0.021449447}
---- !u!114 &2796390826911621906
+--- !u!114 &1719123571998326915
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4802,10 +4802,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 5819868917064569895}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87e7ca7552564134ab1f8989639cacf0, type: 3}
+  m_Script: {fileID: 11500000, guid: 8237c71fefb42374ab317c9093e42169, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collider: {fileID: 1310580996359202405}
+  duration: 3
 --- !u!1 &6615624998480667589
 GameObject:
   m_ObjectHideFlags: 0
@@ -4817,7 +4817,7 @@ GameObject:
   - component: {fileID: 4811287623778761318}
   - component: {fileID: 1744737161217063527}
   - component: {fileID: 5963015242031335443}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: Ring
   m_TagString: Untagged
   m_Icon: {fileID: 0}

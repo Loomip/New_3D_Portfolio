@@ -9,6 +9,7 @@ public class AttackController : MonoBehaviour
 
     // 캐릭터 스테이트 컴포넌트
     protected CharacterState state;
+    protected Health health;
 
     // 이동 컨포넌트
     protected MoveController movement;
@@ -48,6 +49,19 @@ public class AttackController : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         state = GetComponentInParent<CharacterState>();
+        health = GetComponentInParent<Health>();
     }
 
+    private void Update()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            animator.SetTrigger("isAttack");
+        }
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            animator.SetTrigger("isSkill");
+        }
+    }
 }

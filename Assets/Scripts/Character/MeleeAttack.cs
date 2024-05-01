@@ -29,18 +29,16 @@ public class MeleeAttack : AttackController
             // 타격 대상과의 시선 각도를 구함
             float angleToTarget = Vector3.Angle(transform.forward, directionToTargert);
 
-            if(angleToTarget < hitAngle)
+            if (angleToTarget < hitAngle)
             {
-                if(hit.tag == "Enemy")
+                if (hit.tag == "Enemy")
                 {
-                    attackPower = state.GetStat(e_StatType.Atk);
                     hit.GetComponent<MonsterFSMController>().Hit();
                     hit.GetComponent<Health>().Hit(attackPower);
                 }
 
                 if (hit.tag == "Boss")
                 {
-                    attackPower = state.GetStat(e_StatType.Atk);
                     hit.GetComponent<BossFSMController>().Hit();
                     hit.GetComponent<Health>().Hit(attackPower);
                 }
@@ -49,11 +47,5 @@ public class MeleeAttack : AttackController
         }
     }
 
-    private void Update()
-    {
-        if(Input.GetMouseButtonDown(0))
-        {
-            animator.SetTrigger("isAttack");
-        }
-    }
+
 }

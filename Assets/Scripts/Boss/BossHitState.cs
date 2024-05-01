@@ -40,7 +40,10 @@ public class BossHitState : BossAttackableState
 
     public override void EnterState(e_BossState monsterState)
     {
-        StartCoroutine(DamagerCoolDoun());
+        if (monsterHp.CanTakeDamage)
+        {
+            StartCoroutine(DamagerCoolDoun());
+        }
 
         if (monsterHp.hp <= 0)
         {
@@ -74,7 +77,7 @@ public class BossHitState : BossAttackableState
             }
         }
 
-        
+
     }
 
     public override void ExitState()

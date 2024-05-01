@@ -36875,8 +36875,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.12984182, y: 0, z: 0, w: 0.99153477}
-  m_LocalPosition: {x: 0, y: 3, z: -19.279999}
+  m_LocalRotation: {x: 0.1298418, y: -0.000000014775021, z: 0.0000000019347939, w: 0.99153477}
+  m_LocalPosition: {x: 0, y: 3, z: -19}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -38522,7 +38522,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 666672655}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.14785586, y: 0.000000017017262, z: -0.0000000025440636, w: 0.98900896}
+  m_LocalRotation: {x: 0.14785583, y: 1.7373088e-15, z: -8.120018e-17, w: 0.98900896}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -41264,8 +41264,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1027603727}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.111832574, y: -0.000000017624673, z: 0.0000000019834545,
-    w: 0.9937271}
+  m_LocalRotation: {x: 0.11183256, y: -0.00000001709845, z: 0.000000001924234, w: 0.9937271}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -75864,7 +75863,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1184227178}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.12984185, y: -1e-45, z: -0, w: 0.99153477}
+  m_LocalRotation: {x: 0.1298418, y: -1e-45, z: -0, w: 0.99153477}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -76746,7 +76745,7 @@ Transform:
   m_GameObject: {fileID: 1355337511}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 3, z: -19.279999}
+  m_LocalPosition: {x: 0, y: 3, z: -19}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -116085,7 +116084,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e61dd54f4a5e144a8c002c66e738403, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
+  animator: {fileID: 993955129515037398}
   camLookPoint: {fileID: 330585546}
   rotateSpeed: 720
 --- !u!114 &1916322935
@@ -116136,7 +116135,7 @@ Transform:
   m_GameObject: {fileID: 1916322933}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -13.28}
+  m_LocalPosition: {x: 0, y: 0, z: -13}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -116587,7 +116586,7 @@ Transform:
   m_GameObject: {fileID: 2038992113}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.4, y: 5.1, z: 8.029999}
+  m_LocalPosition: {x: 3.4, y: 5.1, z: 8.48}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -119079,7 +119078,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -50.00128, y: -50}
+  m_AnchoredPosition: {x: -50.0011, y: -50}
   m_SizeDelta: {x: -1104.187, y: -100}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &1983105498303550007
@@ -123855,6 +123854,7 @@ GameObject:
   - component: {fileID: 5668650589376638361}
   - component: {fileID: 5668650589376638362}
   - component: {fileID: 5668650589376638363}
+  - component: {fileID: 5668650589376638364}
   m_Layer: 6
   m_Name: Modal
   m_TagString: Player
@@ -123879,7 +123879,7 @@ MonoBehaviour:
     m_Bits: 264
   weaponTransfom: {fileID: 627116185}
   attackTransfom: {fileID: 1274344971}
-  attackRadius: 0.5
+  attackRadius: 1
   hitAngle: 80
 --- !u!114 &5668650589376638362
 MonoBehaviour:
@@ -123912,6 +123912,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isAvoid: {fileID: 1916322939}
+--- !u!114 &5668650589376638364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5668650589376638357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66afa7407ddf4f343b71acf01f86a0e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meleeSkill: {fileID: 499748931938377700, guid: 65579336048291b46832f5eff8d1db32,
+    type: 3}
+  rangedSkill: {fileID: 5819868917064569895, guid: 8d595f38a0b4cb24694f8cd29e5e47fa,
+    type: 3}
+  skillPos: {fileID: 1274344971}
 --- !u!4 &5704461079897068614
 Transform:
   m_ObjectHideFlags: 0

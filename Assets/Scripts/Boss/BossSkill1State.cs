@@ -11,7 +11,7 @@ public class BossSkill1State : BossAttackableState
     public void BossSkill_1()
     {
         GameObject rangeInstant = Instantiate(Skiil_1, BulletPos2.position, BulletPos2.rotation);
-        Effect effect = rangeInstant.GetComponent<Effect>();
+        BossEffect effect = rangeInstant.GetComponent<BossEffect>();
         effect.Atk = atk;
         StartCoroutine(DestroyAfterDelay(rangeInstant, 5f));
     }

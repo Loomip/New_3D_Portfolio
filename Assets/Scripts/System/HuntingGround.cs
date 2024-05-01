@@ -151,7 +151,7 @@ public class HuntingGround : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") || !IsGroundStart)
+        if (other.CompareTag("Player") && !IsGroundStart)
         {
             StartCoroutine(AppearEffectAndSpawn());
             IsGroundStart = true;

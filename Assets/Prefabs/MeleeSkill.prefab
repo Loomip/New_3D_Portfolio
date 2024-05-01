@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4509023696763170284}
   - component: {fileID: 6617392546999518251}
   - component: {fileID: 4511745365529510562}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: Background slash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4729,7 +4729,7 @@ GameObject:
   - component: {fileID: 4739665077628429510}
   - component: {fileID: 6066970304798017554}
   - component: {fileID: 5383871433435847955}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: Stars
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9641,7 +9641,7 @@ GameObject:
   - component: {fileID: 2965683773229008551}
   - component: {fileID: 5127981953635067807}
   - component: {fileID: 706927148951110982}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: CFXR4 Sword Trail ICE (360 Spiral) (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14361,7 +14361,7 @@ GameObject:
   - component: {fileID: 4047834697467550558}
   - component: {fileID: 4450106856514536096}
   - component: {fileID: 8082213475553157486}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: CFXR4 Sword Trail ICE (360 Spiral) (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19080,12 +19080,13 @@ GameObject:
   m_Component:
   - component: {fileID: 2046559310785795436}
   - component: {fileID: 4617641235014888982}
+  - component: {fileID: 7190929426019076034}
+  - component: {fileID: 6598772947148782204}
   - component: {fileID: 1827181969418626052}
-  - component: {fileID: 3512971743221854165}
-  - component: {fileID: 1046339929718156570}
-  m_Layer: 14
-  m_Name: One_Hand_Sword_Skill
-  m_TagString: Skill
+  - component: {fileID: 2615627984203153206}
+  m_Layer: 0
+  m_Name: MeleeSkill
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19099,7 +19100,7 @@ Transform:
   m_GameObject: {fileID: 499748931938377700}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -14.26, y: 2.266, z: 20.86}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -23727,6 +23728,54 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!54 &7190929426019076034
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 499748931938377700}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!135 &6598772947148782204
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 499748931938377700}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 3
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!199 &1827181969418626052
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -23799,28 +23848,7 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!135 &3512971743221854165
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 499748931938377700}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 3
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1046339929718156570
+--- !u!114 &2615627984203153206
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -23829,10 +23857,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 499748931938377700}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87e7ca7552564134ab1f8989639cacf0, type: 3}
+  m_Script: {fileID: 11500000, guid: 8237c71fefb42374ab317c9093e42169, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collider: {fileID: 3512971743221854165}
+  duration: 2
 --- !u!1 &573176823942725389
 GameObject:
   m_ObjectHideFlags: 0
@@ -23844,7 +23872,7 @@ GameObject:
   - component: {fileID: 4040353804664081726}
   - component: {fileID: 620902540897207405}
   - component: {fileID: 6953575757601833396}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: Background slash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28562,7 +28590,7 @@ GameObject:
   - component: {fileID: 2947197652871312437}
   - component: {fileID: 8086057986976033823}
   - component: {fileID: 6593354907440507137}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: Background slash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -33280,7 +33308,7 @@ GameObject:
   - component: {fileID: 2140492376444662103}
   - component: {fileID: 3830400390534400016}
   - component: {fileID: 8738030565980632585}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: Stars
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38192,7 +38220,7 @@ GameObject:
   - component: {fileID: 1271955295737923430}
   - component: {fileID: 5131122565536951410}
   - component: {fileID: 8421345737845876061}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: Stars
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43104,7 +43132,7 @@ GameObject:
   - component: {fileID: 8510688062930443321}
   - component: {fileID: 6929799641709182671}
   - component: {fileID: 8459928422089042101}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: Background slash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -47822,7 +47850,7 @@ GameObject:
   - component: {fileID: 131327660615803337}
   - component: {fileID: 4624255882364090217}
   - component: {fileID: 8437038051942722511}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: Stars
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -52734,7 +52762,7 @@ GameObject:
   - component: {fileID: 8150153575093446334}
   - component: {fileID: 4501692134588550630}
   - component: {fileID: 4429321812518256171}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: Background slash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -57452,7 +57480,7 @@ GameObject:
   - component: {fileID: 2594998070334331063}
   - component: {fileID: 8860365463862362152}
   - component: {fileID: 4235462757503842658}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: CFXR4 Sword Trail ICE (360 Spiral) (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -62172,7 +62200,7 @@ GameObject:
   - component: {fileID: 2803415455556379698}
   - component: {fileID: 674484084130511031}
   - component: {fileID: 7621610277364542433}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: Stars
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -67084,7 +67112,7 @@ GameObject:
   - component: {fileID: 4452453288174052696}
   - component: {fileID: 6673974603174707743}
   - component: {fileID: 1759818993248551775}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: Stars
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -71996,7 +72024,7 @@ GameObject:
   - component: {fileID: 6074278293910526503}
   - component: {fileID: 4870573482505385596}
   - component: {fileID: 8758343011349136914}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: Background slash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -76714,7 +76742,7 @@ GameObject:
   - component: {fileID: 7822409614653188705}
   - component: {fileID: 5795669272345893352}
   - component: {fileID: 6391607905645571696}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: Stars
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -81626,7 +81654,7 @@ GameObject:
   - component: {fileID: 6124268545257420217}
   - component: {fileID: 7584726816833252275}
   - component: {fileID: 7266855411737873664}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: CFXR4 Sword Trail ICE (360 Spiral) (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -86346,7 +86374,7 @@ GameObject:
   - component: {fileID: 5110566836862674366}
   - component: {fileID: 8896388102958704908}
   - component: {fileID: 8013392547204675799}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: CFXR4 Sword Trail ICE (360 Spiral) (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -91066,7 +91094,7 @@ GameObject:
   - component: {fileID: 2012278457443341294}
   - component: {fileID: 7850130669676723007}
   - component: {fileID: 7470509800152808827}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: CFXR4 Sword Trail ICE (360 Spiral) (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95786,7 +95814,7 @@ GameObject:
   - component: {fileID: 5731507642879138874}
   - component: {fileID: 6157312233280366552}
   - component: {fileID: 4554928843773250528}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: CFXR4 Sword Trail ICE (360 Spiral) (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -100506,7 +100534,7 @@ GameObject:
   - component: {fileID: 2329964743844602754}
   - component: {fileID: 9212361768579239808}
   - component: {fileID: 4996264296931501123}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: Stars
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -105418,7 +105446,7 @@ GameObject:
   - component: {fileID: 6416885417026898928}
   - component: {fileID: 4579078678165289381}
   - component: {fileID: 8341285342148346802}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: Background slash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -110136,7 +110164,7 @@ GameObject:
   - component: {fileID: 6652250237005421602}
   - component: {fileID: 8822183537534559546}
   - component: {fileID: 6309663403733171}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: Background slash
   m_TagString: Untagged
   m_Icon: {fileID: 0}

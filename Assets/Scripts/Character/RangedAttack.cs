@@ -11,8 +11,6 @@ public class RangedAttack : AttackController
 
     public void Shot()
     {
-        attackPower = state.GetStat(e_StatType.Atk);
-
         // ÃÑ¾Ë »ý¼º
         GameObject intantBullet = Instantiate(bullet, bulletPos.position, bulletPos.rotation);
         Rigidbody bulletRigid = intantBullet.GetComponent<Rigidbody>();

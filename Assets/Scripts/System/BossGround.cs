@@ -50,7 +50,7 @@ public class BossGround : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") || !IsGroundStart)
+        if (other.CompareTag("Player") && !IsGroundStart)
         {
             string CharacterName = bossPrefabs.GetComponent<CharacterState>().CharacterName;
 
