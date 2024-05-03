@@ -83,7 +83,6 @@ public class UIManager : SingletonDontDestroy<UIManager>
                 playerHp.value = (float)entity.hp / entity.State.GetStat(e_StatType.MaxHp);
                 break;
             case "Enemy":
-                // 딕셔너리에서 체력바를 찾습니다.
                 if (enemyHealthBars.TryGetValue(entity, out Slider enemyHp))
                 {
                     enemyHp.value = (float)entity.hp / entity.State.GetStat(e_StatType.MaxHp);
@@ -117,7 +116,7 @@ public class UIManager : SingletonDontDestroy<UIManager>
 
             var isShow = inven.activeInHierarchy;
 
-            if (isShow) inven.GetComponent<InventoryMenuController>().InvenShow();
+            if (isShow) inven.GetComponentInChildren<InventoryMenuController>().InvenShow();
         }
     }
 }

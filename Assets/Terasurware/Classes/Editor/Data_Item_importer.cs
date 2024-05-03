@@ -61,6 +61,8 @@ public class Data_Item_importer : AssetPostprocessor {
 					cell = row.GetCell(8); p.MaxHp = (int)(cell == null ? 0 : cell.NumericCellValue);
 					cell = row.GetCell(9); p.Mp = (int)(cell == null ? 0 : cell.NumericCellValue);
 					cell = row.GetCell(10); p.MaxMp = (int)(cell == null ? 0 : cell.NumericCellValue);
+					cell = row.GetCell(11); p.Exhaustion = (int)(cell == null ? 0 : cell.NumericCellValue);
+					cell = row.GetCell(12); p.Cooldown = (int)(cell == null ? 0 : cell.NumericCellValue);
 						s.list.Add (p);
 					}
 					data.sheets.Add(s);

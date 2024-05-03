@@ -10,7 +10,9 @@ public enum e_StatType
     Hp,
     MaxHp,
     Mp,
-    MaxMp
+    MaxMp,
+    Exhaustion,
+    Cooldown
 }
 
 public enum e_MenuType

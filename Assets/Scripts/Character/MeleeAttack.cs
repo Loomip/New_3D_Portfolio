@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class MeleeAttack : AttackController
 {
@@ -12,6 +13,16 @@ public class MeleeAttack : AttackController
 
     // 공격 범위 각도
     [SerializeField] private float hitAngle;
+
+    protected override void Update()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            // UI가 켜져있으면 공격하지 못하게 막음
+            if (EventSystem.current.IsPointerOverGameObject()) return;
+            animator.SetTrigger("isAttack");
+        }
+    }
 
     // 공격 애니메이션 피격 이벤트
     public void AttackHitAnimationEvent()

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class RangedAttack : AttackController
 {
@@ -8,6 +9,19 @@ public class RangedAttack : AttackController
     [SerializeField] private Transform bulletPos;
     // 총알 프리펩
     [SerializeField] private GameObject bullet;
+
+    protected override void Update()
+    {
+        if (Input.GetMouseButtonDown(1) && isSkillCooldown)
+        {
+            // UI가 켜져있으면 공격하지 못하게 막음
+            if (EventSystem.current.IsPointerOverGameObject()) return;
+            if (health.mp >= 0)
+            {
+                StartCoroutine(isSkill());
+            }
+        }
+    }
 
     public void Shot()
     {

@@ -28,6 +28,8 @@ public class Data_Item : ScriptableObject
 		public int MaxHp;
 		public int Mp;
 		public int MaxMp;
+		public int Exhaustion;
+		public int Cooldown;
 	}
 }
 

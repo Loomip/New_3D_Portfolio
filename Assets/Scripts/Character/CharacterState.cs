@@ -29,7 +29,9 @@ public class CharacterState : MonoBehaviour
             { e_StatType.Hp, stats.Hp },
             { e_StatType.MaxHp, stats.MaxHp },
             { e_StatType.Mp, stats.Mp },
-            { e_StatType.MaxMp, stats.MaxMp }
+            { e_StatType.MaxMp, stats.MaxMp },
+            { e_StatType.Exhaustion, 0 },
+            { e_StatType.Cooldown, 0 }
         };
     }
 

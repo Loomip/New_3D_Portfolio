@@ -210,7 +210,6 @@ public class ItemSlot : MonoBehaviour
 
                 case "Consumable":
                     btn_Use_Text.text = DataManager.instance.GetWordData("Use");
-
                     useButton = () => Button_Use(item);
                     break;
             }

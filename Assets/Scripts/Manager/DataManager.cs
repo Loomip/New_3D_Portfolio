@@ -66,7 +66,9 @@ public class DataManager : SingletonDontDestroy<DataManager>
             { e_StatType.Hp, result.Hp },
             { e_StatType.MaxHp, result.MaxHp },
             { e_StatType.Mp, result.Mp },
-            { e_StatType.MaxMp, result.MaxMp }
+            { e_StatType.MaxMp, result.MaxMp },
+            {e_StatType.Exhaustion, result.Exhaustion },
+            {e_StatType.Cooldown, result.Cooldown }
         };
         }
         else

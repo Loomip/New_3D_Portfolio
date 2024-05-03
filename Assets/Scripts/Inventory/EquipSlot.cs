@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class EquipSlot : Slot
 {
-    ItemData EquippedItem { get; set; } // 이 슬롯에 장착된 아이템
+    ItemData equippedItem; // 이 슬롯에 장착된 아이템
+    public ItemData EquippedItem { get => equippedItem; set => equippedItem = value; }
 
     // 캐릭터 스텟 참조
     CharacterState state;
@@ -16,6 +17,7 @@ public class EquipSlot : Slot
 
     //무기를 끼고 있는지
     public bool IsEquipped { get; private set; } = false;
+
 
     public void Set(ItemData data)
     {

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class AttackController : MonoBehaviour
 {
@@ -27,6 +28,9 @@ public class AttackController : MonoBehaviour
     // 공격 가능 여부
     protected bool isAttack;
 
+    // 스킬 사용 가능 여부
+    protected bool isSkillCooldown = true;
+
     // 무기 장착 위치
     [SerializeField] protected Transform weaponTransfom;
 
@@ -52,16 +56,22 @@ public class AttackController : MonoBehaviour
         health = GetComponentInParent<Health>();
     }
 
-    private void Update()
+    protected virtual void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            animator.SetTrigger("isAttack");
-        }
+        
+    }
 
-        if (Input.GetMouseButtonDown(1))
+    protected IEnumerator isSkill()
+    {
+        if (health.mp >= state.GetStat(e_StatType.Exhaustion))
         {
+            isSkillCooldown = false;
             animator.SetTrigger("isSkill");
+            health.mp -= state.GetStat(e_StatType.Exhaustion);
+            Debug.Log(health.mp);
+            UIManager.instance.RefreshPlayerMp(health);
+            yield return new WaitForSeconds(state.GetStat(e_StatType.Cooldown));
+            isSkillCooldown = true;
         }
     }
 }

@@ -26,6 +26,8 @@ MonoBehaviour:
       MaxHp: 500
       Mp: 0
       MaxMp: 0
+      Exhaustion: 50
+      Cooldown: 5
     - ID: 1001
       Name: Weapon +1
       ItemType: Weapon
@@ -37,6 +39,8 @@ MonoBehaviour:
       MaxHp: 500
       Mp: 0
       MaxMp: 0
+      Exhaustion: 50
+      Cooldown: 5
     - ID: 1002
       Name: Weapon +2
       ItemType: Weapon
@@ -48,6 +52,8 @@ MonoBehaviour:
       MaxHp: 500
       Mp: 0
       MaxMp: 0
+      Exhaustion: 50
+      Cooldown: 5
     - ID: 1003
       Name: Weapon +3
       ItemType: Weapon
@@ -59,6 +65,8 @@ MonoBehaviour:
       MaxHp: 500
       Mp: 0
       MaxMp: 0
+      Exhaustion: 50
+      Cooldown: 5
     - ID: 1004
       Name: Weapon +4
       ItemType: Weapon
@@ -70,6 +78,8 @@ MonoBehaviour:
       MaxHp: 500
       Mp: 0
       MaxMp: 0
+      Exhaustion: 50
+      Cooldown: 5
     - ID: 1005
       Name: Weapon +5
       ItemType: Weapon
@@ -81,6 +91,8 @@ MonoBehaviour:
       MaxHp: 600
       Mp: 0
       MaxMp: 0
+      Exhaustion: 50
+      Cooldown: 5
     - ID: 2000
       Name: Spell
       ItemType: Weapon
@@ -92,6 +104,8 @@ MonoBehaviour:
       MaxHp: 100
       Mp: 0
       MaxMp: 100
+      Exhaustion: 30
+      Cooldown: 3
     - ID: 2001
       Name: Spell +1
       ItemType: Weapon
@@ -103,6 +117,8 @@ MonoBehaviour:
       MaxHp: 100
       Mp: 0
       MaxMp: 100
+      Exhaustion: 30
+      Cooldown: 3
     - ID: 2002
       Name: Spell +2
       ItemType: Weapon
@@ -114,6 +130,8 @@ MonoBehaviour:
       MaxHp: 100
       Mp: 0
       MaxMp: 100
+      Exhaustion: 30
+      Cooldown: 3
     - ID: 2003
       Name: Spell +3
       ItemType: Weapon
@@ -125,6 +143,8 @@ MonoBehaviour:
       MaxHp: 100
       Mp: 0
       MaxMp: 100
+      Exhaustion: 30
+      Cooldown: 3
     - ID: 2004
       Name: Spell +4
       ItemType: Weapon
@@ -136,6 +156,8 @@ MonoBehaviour:
       MaxHp: 100
       Mp: 0
       MaxMp: 100
+      Exhaustion: 30
+      Cooldown: 3
     - ID: 2005
       Name: Spell +5
       ItemType: Weapon
@@ -147,6 +169,8 @@ MonoBehaviour:
       MaxHp: 200
       Mp: 0
       MaxMp: 100
+      Exhaustion: 30
+      Cooldown: 3
     - ID: 10000
       Name: Potion
       ItemType: Consumable
@@ -158,6 +182,8 @@ MonoBehaviour:
       MaxHp: 0
       Mp: 0
       MaxMp: 0
+      Exhaustion: 0
+      Cooldown: 0
     - ID: 10001
       Name: Leaf
       ItemType: Consumable
@@ -169,3 +195,5 @@ MonoBehaviour:
       MaxHp: 0
       Mp: 20
       MaxMp: 0
+      Exhaustion: 0
+      Cooldown: 0
