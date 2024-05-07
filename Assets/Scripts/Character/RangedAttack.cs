@@ -30,6 +30,8 @@ public class RangedAttack : AttackController
         Rigidbody bulletRigid = intantBullet.GetComponent<Rigidbody>();
         Bullet bullets = intantBullet.GetComponent<Bullet>();
 
+        SoundManager.instance.PlaySfx(e_Sfx.Bullet);
+
         // 총알 발사 속도
         bulletRigid.velocity = bulletPos.forward * 20f;
 

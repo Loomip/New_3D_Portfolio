@@ -43,6 +43,7 @@ public class BossSkill2State : BossAttackableState
         // 애니메이션 재생
         animator.SetInteger("State", (int)state);
         controller.IsSkill = true;
+        SoundManager.instance.PlaySfx(e_Sfx.BossSkill2);
     }
 
     // 대기 상태 기능 동작 처리 (상태 실행)

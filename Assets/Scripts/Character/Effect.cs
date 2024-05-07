@@ -9,11 +9,23 @@ public class Effect : MonoBehaviour
     private int atk;
     public int Atk { get => atk; set => atk = value; }
 
+    // 효과음을 나눌 Enum 타입
+    [SerializeField] e_SkillSound skillSound;
+
     // 스킬 지속시간
     [SerializeField] private float duration;
 
     private void Start()
     {
+        if (skillSound == e_SkillSound.melee)
+        {
+            SoundManager.instance.PlaySfx(e_Sfx.SwordSkill);
+        }
+        else if (skillSound == e_SkillSound.Ranged)
+        {
+            SoundManager.instance.PlaySfx(e_Sfx.BulletSkill);
+        }
+
         // 일정시간뒤 시라짐
         StartCoroutine(DestroyAfterTime(duration));
     }
@@ -25,8 +37,7 @@ public class Effect : MonoBehaviour
             other.GetComponent<MonsterFSMController>().Hit();
             other.GetComponent<Health>().Hit(Atk);
         }
-
-        if (other.tag == "Boss")
+        else if (other.tag == "Boss")
         {
             other.GetComponent<BossFSMController>().Hit();
             other.GetComponent<Health>().Hit(Atk);

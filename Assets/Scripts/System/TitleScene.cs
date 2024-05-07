@@ -29,6 +29,6 @@ public class TitleScene : MonoBehaviour
         txt_Start.text = DataManager.instance.GetWordData("Start");
         txt_Exit.text = DataManager.instance.GetWordData("Exit");
 
-        //SoundManager.instance.PlayBgm(e_Bgm.TitleSound);
+        SoundManager.instance.PlayBgm(e_Bgm.Title);
     }
 }

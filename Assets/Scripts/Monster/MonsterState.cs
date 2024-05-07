@@ -45,7 +45,7 @@ public abstract class MonsterState : MonoBehaviour
         state = GetComponent<CharacterState>();
         controller = GetComponent<MonsterFSMController>();
         monsterHp = GetComponent<Health>();
-        animator = GetComponentInChildren<Animator>();
+        animator = GetComponent<Animator>();
         meshs = GetComponentInChildren<SkinnedMeshRenderer>();
         huntingGround = FindObjectOfType<HuntingGround>();
     }

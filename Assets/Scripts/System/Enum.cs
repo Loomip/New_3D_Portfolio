@@ -58,3 +58,29 @@ public enum e_BossState
     Die         // авю╫ ╩Себ
 }
 
+public enum e_SkillSound
+{
+    melee,
+    Ranged
+}
+
+public enum e_Bgm
+{
+    Title,
+    Start,
+}
+
+public enum e_Sfx
+{
+    Bullet,
+    Sword,
+    SwordSkill = 4,
+    BulletSkill,
+    Explosion,
+    BossAtteck,
+    BossSkill,
+    BossSkill2,
+    EnemyDie,
+    EnemyDieEffectSound
+}
+

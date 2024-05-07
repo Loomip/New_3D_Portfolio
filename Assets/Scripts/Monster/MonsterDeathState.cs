@@ -5,11 +5,9 @@ using UnityEngine.AI;
 
 public class MonsterDeathState : MonsterState
 {
-    // 죽엇을때 꺼질 본체 모델
-    [SerializeField] private GameObject body;
-
-    // 죽엇을때 나오는 레그돌 모델
-    [SerializeField] private GameObject ragdoll;
+    [SerializeField] private Rigidbody rb;
+    [SerializeField] private Rigidbody[] rigidbodies;
+    [SerializeField] private Transform regdollPosition;
 
     // 사망 완료 처리 시간
     [SerializeField] protected float time;
@@ -21,16 +19,27 @@ public class MonsterDeathState : MonsterState
     // 이펙트 생성 위치
     [SerializeField] protected Transform effectPos;
 
-    private void CopyCharacterTransformToRagdoll(Transform origin, Transform ragdoll)
+
+    private void Start()
     {
-        for(int i = 0; i < origin.childCount; i++)
+        rigidbodies = GetComponentsInChildren<Rigidbody>();
+        DisableRegdoll();
+    }
+
+    public void EnableRegdoll()
+    {
+        for (int i = 0; i < rigidbodies.Length; i++)
         {
-            if(origin.childCount != 0)
-            {
-                CopyCharacterTransformToRagdoll(origin.GetChild(i), ragdoll.GetChild(i));
-            }
-            ragdoll.GetChild(i).localPosition = origin.GetChild(i).localPosition;
-            ragdoll.GetChild(i).localRotation = origin.GetChild(i).localRotation;
+            rigidbodies[i].isKinematic = false;
+            rigidbodies[i].velocity = Vector3.zero;
+        }
+    }
+
+    public void DisableRegdoll()
+    {
+        for (int i = 0; i < rigidbodies.Length; i++)
+        {
+            rigidbodies[i].isKinematic = true;
         }
     }
 
@@ -39,13 +48,16 @@ public class MonsterDeathState : MonsterState
         // 이동 중지
         nav.isStopped = true;
 
-        CopyCharacterTransformToRagdoll(body.transform, ragdoll.transform);
+        SoundManager.instance.PlaySfx(e_Sfx.EnemyDie);
 
-        // 본체 모델 제거
-        body.SetActive(false);
+        animator.enabled = false;
 
-        // 레그돌 모델 생성
-        ragdoll.SetActive(true);
+        EnableRegdoll();
+
+        foreach (Rigidbody rb in rigidbodies)
+        {
+            rb.AddExplosionForce(10, regdollPosition.position, 20f, 5f, ForceMode.Impulse);
+        }
     }
 
     public override void UpdateState()

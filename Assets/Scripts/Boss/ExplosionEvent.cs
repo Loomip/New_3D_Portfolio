@@ -29,7 +29,7 @@ public class ExplosionEvent : MonoBehaviour
             // ¶¥°ú Ãæµ¹ÇßÀ» ¶§ Æø¹ß ÀÌÆåÆ® »ý¼º
             var evt = collisionEvents[0];
             GameObject explosionEffect = Instantiate(explosionEffectPrefab, evt.intersection, Quaternion.identity);
-            //SoundManager.instance.PlaySfx(e_Sfx.ExplosionSound);
+            SoundManager.instance.PlaySfx(e_Sfx.Explosion);
             BossEffect effect = explosionEffect.GetComponent<BossEffect>();
             BossAttackableState boss = owner.GetComponent<BossAttackableState>();
             effect.Atk = boss.atk;

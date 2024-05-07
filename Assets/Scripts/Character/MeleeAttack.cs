@@ -31,6 +31,8 @@ public class MeleeAttack : AttackController
         //  - 레이캐스트처럼 해당 메소드가 실행되는 순간 설정 영역안에 있는 충돌 대상들을 검출함
         Collider[] hits = Physics.OverlapSphere(attackTransfom.position, attackRadius, targetLayer);
 
+        SoundManager.instance.PlaySfx(e_Sfx.Sword);
+
         // 피격된 대상들 중 지정된 각도 안에 있는 대상을 타격함
         foreach (Collider hit in hits)
         {

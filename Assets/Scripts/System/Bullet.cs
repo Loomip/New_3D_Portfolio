@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    private float atk;
-    public float Atk { get => atk; set => atk = value; }
+    private int atk;
+    public int Atk { get => atk; set => atk = value; }
 
     // 리지드 바디 컴포넌트
     Rigidbody rigid;
@@ -105,14 +105,13 @@ public class Bullet : MonoBehaviour
             Health targetHealth = other.gameObject.GetComponent<Health>();
             if (targetHealth != null)
             {
-                // Hit 메소드를 호출하여 피해를 입힘
-                targetHealth.Hit((int)atk);
-
                 if (other.tag == "Enemy")
                     other.GetComponent<MonsterFSMController>().Hit();
+                    other.GetComponent<Health>().Hit(Atk);
 
-                if(other.tag == "Boss")
+                if (other.tag == "Boss")
                     other.GetComponent<BossFSMController>().Hit();
+                    other.GetComponent<Health>().Hit(Atk);
             }
 
             Destroy(gameObject);

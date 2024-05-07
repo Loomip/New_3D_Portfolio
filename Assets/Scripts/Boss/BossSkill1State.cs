@@ -14,6 +14,7 @@ public class BossSkill1State : BossAttackableState
         BossEffect effect = rangeInstant.GetComponent<BossEffect>();
         effect.Atk = atk;
         StartCoroutine(DestroyAfterDelay(rangeInstant, 5f));
+        SoundManager.instance.PlaySfx(e_Sfx.BossSkill);
     }
 
     // 공격 대상을 주시

@@ -4805,6 +4805,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8237c71fefb42374ab317c9093e42169, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  skillSound: 1
   duration: 3
 --- !u!1 &6615624998480667589
 GameObject:
