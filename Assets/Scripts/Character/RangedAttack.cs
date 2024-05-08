@@ -16,6 +16,7 @@ public class RangedAttack : AttackController
         {
             // UI가 켜져있으면 공격하지 못하게 막음
             if (EventSystem.current.IsPointerOverGameObject()) return;
+
             if (health.mp >= 0)
             {
                 StartCoroutine(isSkill());

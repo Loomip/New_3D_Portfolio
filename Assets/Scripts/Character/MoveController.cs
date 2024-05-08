@@ -11,6 +11,7 @@ public class MoveController : MonoBehaviour
     private CharacterController controller;
     // 캐릭터 스테이트 컴포넌트
     private CharacterState characterState;
+
     // 카메라 참조 위치
     [SerializeField] private Transform camLookPoint;
     // 이동 속도
@@ -38,11 +39,14 @@ public class MoveController : MonoBehaviour
 
     private bool isAvoiding = false;  // 회피 중인지 나타내는 플래그
 
+    private AttackController pAttack;
+
     void Start()
     {
         controller = GetComponent<CharacterController>();
         characterState = GetComponent<CharacterState>();
         health = GetComponent<Health>();
+        pAttack = GetComponent<AttackController>();
     }
 
     public void Move()
@@ -69,20 +73,23 @@ public class MoveController : MonoBehaviour
             direction = Quaternion.AngleAxis(camLookPoint.rotation.eulerAngles.y, Vector3.up) * direction;
             direction.Normalize(); // 방향 벡터를 정규화함
 
-            // 이동 벡터를 설정
-            movement = direction * speed * Time.deltaTime;
-
-            // 캐릭터 컨트롤러를 이용한 이동을 수행
-            controller.Move(movement);
-
-            // 이동을 수행하고 있다면
-            if (movement != Vector3.zero)
+            if (pAttack.IsAttack)
             {
-                // 현재 방향 기준의 쿼터니언을 반환함
-                Quaternion targetRotation = Quaternion.LookRotation(direction, Vector3.up);
+                // 이동 벡터를 설정
+                movement = direction * speed * Time.deltaTime;
 
-                // 캐릭터를 회전함
-                transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotateSpeed * Time.deltaTime);
+                // 캐릭터 컨트롤러를 이용한 이동을 수행
+                controller.Move(movement);
+
+                // 이동을 수행하고 있다면
+                if (movement != Vector3.zero)
+                {
+                    // 현재 방향 기준의 쿼터니언을 반환함
+                    Quaternion targetRotation = Quaternion.LookRotation(direction, Vector3.up);
+
+                    // 캐릭터를 회전함
+                    transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotateSpeed * Time.deltaTime);
+                }
             }
         }
     }
@@ -138,6 +145,8 @@ public class MoveController : MonoBehaviour
 
     void Update()
     {
+        
+
         Move();
         Avoid();
 

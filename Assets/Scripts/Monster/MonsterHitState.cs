@@ -9,7 +9,6 @@ public class MonsterHitState : MonsterAttackableState
 
     IEnumerator DamagerCoolDoun()
     {
-
         Material[] materialsCopy = meshs.materials;
 
         // 각 머티리얼의 색상을 변경

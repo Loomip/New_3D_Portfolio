@@ -173,7 +173,7 @@ GameObject:
   - component: {fileID: 938330260800670693}
   - component: {fileID: 1923345816702231098}
   - component: {fileID: 219869492480174632}
-  - component: {fileID: 2573531066386808824}
+  - component: {fileID: 400511848775029756}
   - component: {fileID: 6741395913766657588}
   - component: {fileID: 8159359888710968760}
   - component: {fileID: 7593949528562119228}
@@ -286,7 +286,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterName: Enemy2
---- !u!114 &2573531066386808824
+--- !u!114 &400511848775029756
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -295,13 +295,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 428526672516923572}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1bc3cbed2eb7234c8d1a0c9794b3d63, type: 3}
+  m_Script: {fileID: 11500000, guid: 55824a43fbf21744487122d3ff74fb3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   state: {fileID: 219869492480174632}
+  damageCooldown: 0.5
   healthBarPrefab: {fileID: 7091954315217879690, guid: 037400e0e4af78443b4f11bcbddeac10,
     type: 3}
-  damageCooldown: 0.5
 --- !u!114 &6741395913766657588
 MonoBehaviour:
   m_ObjectHideFlags: 0

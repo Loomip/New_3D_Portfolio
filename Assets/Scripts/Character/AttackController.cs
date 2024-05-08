@@ -26,7 +26,8 @@ public class AttackController : MonoBehaviour
     }
 
     // 공격 가능 여부
-    protected bool isAttack;
+    protected bool isAttack = true;
+    public bool IsAttack { get => isAttack; set => isAttack = value; }
 
     // 스킬 사용 가능 여부
     protected bool isSkillCooldown = true;
@@ -35,6 +36,7 @@ public class AttackController : MonoBehaviour
     [SerializeField] protected Transform weaponTransfom;
 
     public Transform WeaponTransfom { get => weaponTransfom; set => weaponTransfom = value; }
+
 
     // 무기를 장착하는 메소드
     public void EquipWeapon(GameObject weapon)
@@ -68,7 +70,6 @@ public class AttackController : MonoBehaviour
             isSkillCooldown = false;
             animator.SetTrigger("isSkill");
             health.mp -= state.GetStat(e_StatType.Exhaustion);
-            Debug.Log(health.mp);
             UIManager.instance.RefreshPlayerMp(health);
             yield return new WaitForSeconds(state.GetStat(e_StatType.Cooldown));
             isSkillCooldown = true;

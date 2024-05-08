@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class AvoidCallback : MonoBehaviour
 {
-    [SerializeField] Health isAvoid;
+    Health isAvoid;
+
+    private void Start()
+    {
+        isAvoid = GetComponent<Health>();
+    }
 
     public void IsAvoid()
     {
