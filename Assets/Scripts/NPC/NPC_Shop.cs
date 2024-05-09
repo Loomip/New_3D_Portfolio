@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class NPC_Shop : NPC_Base
@@ -63,23 +62,35 @@ public class NPC_Shop : NPC_Base
 
             // 생성된 슬롯을 리스트에 추가
             inventorySlots.Add(PlayerSlot);
+
+            PlayerSlot.onItemClick += SelectItem;
         }
     }
+
+    // Player 인벤토리 아이템 선택 (슬롯 클릭 시 호출)
+    public void SelectItem(ItemData selectedItem)
+    {
+        playerSelectedItem = selectedItem;
+    }
+
 
     void RefreshIcon()
     {
         List<ItemData> dataList = InventoryManager.instance.GetItemList();
 
+        // 모든 슬롯을 클리어합니다.
+        foreach (Slot slot in inventorySlots)
+        {
+            slot.ClearSlot();
+        }
+
+        // 아이템 목록을 순회하면서 각 슬롯의 아이콘을 설정합니다.
         for (int i = 0; i < dataList.Count; i++)
         {
             if (InventoryManager.instance.GetItemList()[i] != null)
             {
                 ItemData item = InventoryManager.instance.GetItemList()[i];
                 inventorySlots[i].Set_Icon(item);
-            }
-            else
-            {
-                inventorySlots[i].ClearSlot();
             }
         }
     }
@@ -88,6 +99,9 @@ public class NPC_Shop : NPC_Base
     {
         shopOpen = true;
         shopObject.SetActive(shopOpen);
+
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
 
         addText.text = DataManager.instance.GetWordData("Purchase");
         sellText.text = DataManager.instance.GetWordData("Sell");
@@ -140,8 +154,11 @@ public class NPC_Shop : NPC_Base
                 // 새 아이템을 인벤토리에 추가
                 InventoryManager.instance.AddItem(newItem);
 
-                // 인벤토리 UI를 업데이트합니다.
+                // 상점 인벤토리 UI를 업데이트합니다.
                 RefreshIcon();
+
+                // 플레이어 인벤토리 UI를 업데이트 합니다.
+                InventoryManager.instance.RefreshIcon();
             }
             else
             {
@@ -154,13 +171,13 @@ public class NPC_Shop : NPC_Base
         }
     }
 
-    // 팔기 (버튼에 다는 기능)
-    public void Sell()
+    // 팔기
+    public void SellSelected(ItemData pSelectedItem)
     {
         // 선택된 아이템이 있는지 확인합니다.
-        if (playerSelectedItem != null)
+        if (pSelectedItem != null)
         {
-            Data_Shop.Param prise = DataManager.instance.GetShopData(playerSelectedItem.id);
+            Data_Shop.Param prise = DataManager.instance.GetShopData(pSelectedItem.id);
 
             // 현재 골드에 아이템의 가격을 더해줍니다.
             InventoryManager.instance.gold += prise.SalePrise;
@@ -168,7 +185,7 @@ public class NPC_Shop : NPC_Base
 
             // 인벤토리에서 아이템을 제거합니다.
             List<ItemData> items = InventoryManager.instance.GetItemList();
-            ItemData itemToRemove = items.Find(item => item.id == playerSelectedItem.id);
+            ItemData itemToRemove = items.Find(item => item.id == pSelectedItem.id);
             if (itemToRemove != null)
             {
                 // 아이템의 개수 감소
@@ -178,12 +195,15 @@ public class NPC_Shop : NPC_Base
                 if (itemToRemove.amount <= 0)
                 {
                     InventoryManager.instance.RemoveItem(itemToRemove);
-                    playerSelectedItem = null;
+                    pSelectedItem = null;
                 }
             }
 
-            // 인벤토리 UI를 업데이트합니다.
+            // 상점 인벤토리 UI를 업데이트합니다.
             RefreshIcon();
+
+            // 플레이어 인벤토리 UI를 업데이트 합니다.
+            InventoryManager.instance.RefreshIcon();
         }
         else
         {
@@ -191,11 +211,20 @@ public class NPC_Shop : NPC_Base
         }
     }
 
+    // 아이템 판매 (버튼에 달 기능)
+    public void Sell()
+    {
+        SellSelected(playerSelectedItem);
+    }
+
     //나가기 (버튼에 다는 기능)
     public void Close()
     {
         shopOpen = false;
         shopObject.SetActive(shopOpen);
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     private void Start()

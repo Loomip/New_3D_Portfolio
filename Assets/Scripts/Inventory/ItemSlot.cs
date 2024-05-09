@@ -118,19 +118,14 @@ public class ItemSlot : MonoBehaviour
             if (equipSlot.Type.ToString() == itemData.ItemType)
             {
                 // 이미 장착한 장비가 있는지 확인
-                if (!equipSlot.IsEquipped)
-                {
-                    // 선택한 장비를 장착
-                    equipSlot.Set(item);
-                }
-                else
+                if (equipSlot.IsEquipped)
                 {
                     // 선택한 장비를 해제
                     equipSlot.Detach();
-
-                    // 선택한 장비를 장착
-                    equipSlot.Set(item);
                 }
+
+                // 선택한 장비를 장착
+                equipSlot.Set(item);
             }
         }
 

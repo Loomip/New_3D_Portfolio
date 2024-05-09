@@ -65,3 +65,9 @@ MonoBehaviour:
       Kor: "\uC0DD\uC131\uD558\uAE30"
     - Type: Discard
       Kor: "\uBC84\uB9AC\uAE30"
+    - Type: Ending
+      Kor: "\uBD10\uC8FC\uC154\uC11C \uAC10\uC0AC\uD569\uB2C8\uB2E4."
+    - Type: ReStart
+      Kor: "\uB2E4\uC2DC \uD558\uC2DC\uAC9F\uC2B5\uB2C8\uAE4C?"
+    - Type: Final
+      Kor: "\uAC8C\uC784 \uC885\uB8CC"

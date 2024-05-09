@@ -48,6 +48,8 @@ public class MonsterDeathState : MonsterState
         // 이동 중지
         nav.isStopped = true;
 
+        gameObject.layer = 0;
+
         SoundManager.instance.PlaySfx(e_Sfx.EnemyDie);
 
         animator.enabled = false;

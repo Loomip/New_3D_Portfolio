@@ -9,5 +9,6 @@ public class MainScene : MonoBehaviour
     {
         SoundManager.instance.PlayBgm(e_Bgm.Start);
     }
-
 }
+
+

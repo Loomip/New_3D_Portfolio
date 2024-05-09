@@ -77,6 +77,10 @@ public class SoundManager : SingletonDontDestroy<SoundManager>
             {
                 RanIndex = Random.Range(0, 3);
             }
+            if (sfx == e_Sfx.Hit)
+            {
+                RanIndex = Random.Range(0, 4);
+            }
 
             channelIndex = LoopIndex;
             sfxPlayers[LoopIndex].clip = sfxClips[(int)sfx + RanIndex];

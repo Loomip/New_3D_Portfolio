@@ -22,7 +22,7 @@ MonoBehaviour:
       Atk: 100
       Def: 10
       Spd: 1
-      Hp: 500
+      Hp: 0
       MaxHp: 500
       Mp: 0
       MaxMp: 0
@@ -35,7 +35,7 @@ MonoBehaviour:
       Atk: 110
       Def: 10
       Spd: 1
-      Hp: 500
+      Hp: 0
       MaxHp: 500
       Mp: 0
       MaxMp: 0
@@ -48,7 +48,7 @@ MonoBehaviour:
       Atk: 120
       Def: 10
       Spd: 1
-      Hp: 500
+      Hp: 0
       MaxHp: 500
       Mp: 0
       MaxMp: 0
@@ -61,7 +61,7 @@ MonoBehaviour:
       Atk: 130
       Def: 10
       Spd: 1
-      Hp: 500
+      Hp: 0
       MaxHp: 500
       Mp: 0
       MaxMp: 0
@@ -74,7 +74,7 @@ MonoBehaviour:
       Atk: 140
       Def: 10
       Spd: 1
-      Hp: 500
+      Hp: 0
       MaxHp: 500
       Mp: 0
       MaxMp: 0
@@ -87,7 +87,7 @@ MonoBehaviour:
       Atk: 150
       Def: 10
       Spd: 2
-      Hp: 600
+      Hp: 0
       MaxHp: 600
       Mp: 0
       MaxMp: 0
@@ -100,7 +100,7 @@ MonoBehaviour:
       Atk: 70
       Def: 0
       Spd: 0
-      Hp: 100
+      Hp: 0
       MaxHp: 100
       Mp: 0
       MaxMp: 100
@@ -113,7 +113,7 @@ MonoBehaviour:
       Atk: 80
       Def: 0
       Spd: 0
-      Hp: 100
+      Hp: 0
       MaxHp: 100
       Mp: 0
       MaxMp: 100
@@ -126,7 +126,7 @@ MonoBehaviour:
       Atk: 90
       Def: 0
       Spd: 0
-      Hp: 100
+      Hp: 0
       MaxHp: 100
       Mp: 0
       MaxMp: 100
@@ -139,7 +139,7 @@ MonoBehaviour:
       Atk: 100
       Def: 0
       Spd: 0
-      Hp: 100
+      Hp: 0
       MaxHp: 100
       Mp: 0
       MaxMp: 100
@@ -152,7 +152,7 @@ MonoBehaviour:
       Atk: 110
       Def: 0
       Spd: 0
-      Hp: 100
+      Hp: 0
       MaxHp: 100
       Mp: 0
       MaxMp: 100
@@ -165,7 +165,7 @@ MonoBehaviour:
       Atk: 120
       Def: 0
       Spd: 1
-      Hp: 200
+      Hp: 0
       MaxHp: 200
       Mp: 0
       MaxMp: 100

@@ -40,6 +40,8 @@ public class EquipSlot : Slot
         foreach (var s in status)
         {
             state.AddStat(s.Key, s.Value);
+            UIManager.instance.RefreshHp(state.tag, state.GetComponent<Health>());
+            UIManager.instance.RefreshPlayerMp(state.GetComponent<Health>());
         }
 
         // 장착된 아이템의 게임 오브젝트를 인스턴스화

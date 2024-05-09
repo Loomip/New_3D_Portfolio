@@ -2579,6 +2579,10 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 8332f95fe63cf814796e71aeead23d78, type: 3}
   - {fileID: 8300000, guid: 22ea9540bb12710409111556292c777f, type: 3}
   - {fileID: 8300000, guid: 7b3d507be12c8e440bd1395d2bbca489, type: 3}
+  - {fileID: 8300000, guid: 23f6a0e78ee291a44874038b81ad0010, type: 3}
+  - {fileID: 8300000, guid: c805ffe839952a54bb832d1a2e7843f0, type: 3}
+  - {fileID: 8300000, guid: f52896f4275829f4a859a52af9e455d1, type: 3}
+  - {fileID: 8300000, guid: 6f24db6b1e1227a40b4c953bb07c7f26, type: 3}
   sfxVolume: 1
   sfxChannels: 16
 --- !u!1 &5043483646666741541
@@ -4025,6 +4029,7 @@ MonoBehaviour:
   bgmText: {fileID: 5263774024726589004}
   sfxText: {fileID: 2591844797460135837}
   muteText: {fileID: 134062775632906992}
+  exitText: {fileID: 0}
 --- !u!222 &9063797764578475130
 CanvasRenderer:
   m_ObjectHideFlags: 0

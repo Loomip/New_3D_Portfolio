@@ -10986,7 +10986,7 @@ GameObject:
   - component: {fileID: 4421959469860585484}
   - component: {fileID: 7763599244070148717}
   - component: {fileID: 4421959469860585485}
-  - component: {fileID: 4421959469860585486}
+  - component: {fileID: 3937771218817366047}
   - component: {fileID: 4421959469860585487}
   - component: {fileID: 4421959469860585488}
   - component: {fileID: 4421959469860585489}
@@ -11100,7 +11100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterName: Boss
---- !u!114 &4421959469860585486
+--- !u!114 &3937771218817366047
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -11109,12 +11109,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 3897342217572276909}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1bc3cbed2eb7234c8d1a0c9794b3d63, type: 3}
+  m_Script: {fileID: 11500000, guid: 55824a43fbf21744487122d3ff74fb3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   state: {fileID: 4421959469860585485}
-  healthBarPrefab: {fileID: 0}
   damageCooldown: 0.5
+  healthBarPrefab: {fileID: 0}
 --- !u!114 &4421959469860585487
 MonoBehaviour:
   m_ObjectHideFlags: 0

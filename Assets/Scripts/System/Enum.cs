@@ -81,6 +81,7 @@ public enum e_Sfx
     BossSkill,
     BossSkill2,
     EnemyDie,
-    EnemyDieEffectSound
+    EnemyDieEffectSound,
+    Hit
 }
 

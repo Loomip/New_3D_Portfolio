@@ -17,7 +17,7 @@ public class UIManager : SingletonDontDestroy<UIManager>
     //상호작용
     void InteractableObject()
     {
-        if (player.GetInterctableObject() != null)
+        if (player != null && player.GetInterctableObject() != null)
             InteractableShow();
         else
             InteractableHide();
@@ -43,7 +43,7 @@ public class UIManager : SingletonDontDestroy<UIManager>
 
     private void DoorableObject()
     {
-        if (player.GetDoorableObject() != null)
+        if (player != null && player.GetDoorableObject() != null)
             OpenDoor();
         else
             CloseDoor();
@@ -116,7 +116,17 @@ public class UIManager : SingletonDontDestroy<UIManager>
 
             var isShow = inven.activeInHierarchy;
 
-            if (isShow) inven.GetComponentInChildren<InventoryMenuController>().InvenShow();
+            if (isShow)
+            {
+                inven.GetComponentInChildren<InventoryMenuController>().InvenShow();
+                Cursor.lockState = CursorLockMode.None; 
+                Cursor.visible = true; 
+            }
+            else
+            {
+                Cursor.lockState = CursorLockMode.Locked; 
+                Cursor.visible = false;
+            }
         }
     }
 }

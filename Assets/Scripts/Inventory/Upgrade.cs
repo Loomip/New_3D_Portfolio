@@ -64,6 +64,12 @@ public class Upgrade : MonoBehaviour
     {
         List<ItemData> dataList = InventoryManager.instance.GetItemList();
 
+        // 모든 슬롯을 클리어합니다.
+        foreach (Slot slot in slotList)
+        {
+            slot.ClearSlot();
+        }
+
         int weaponIndex = 0; // 무기 아이템만을 카운트하는 새로운 인덱스 변수
 
         for (int i = 0; i < dataList.Count; i++)
@@ -80,12 +86,6 @@ public class Upgrade : MonoBehaviour
                     weaponIndex++;
                 }
             }
-        }
-
-        // 남은 슬롯들을 초기화합니다.
-        for (int i = weaponIndex; i < slotList.Count; i++)
-        {
-            slotList[i].ClearSlot();
         }
     }
 

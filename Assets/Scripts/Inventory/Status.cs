@@ -76,20 +76,30 @@ public class Status : MonoBehaviour
     // 장비 해제하기 (버튼에 직접 달 메소드)
     public void UnbindItem()
     {
-        string item = DataManager.instance.GetWeaponData(equipslot.CurrentItem.id).ItemType;
+        if (equipslot.CurrentItem != null)
+        {
+            string item = DataManager.instance.GetWeaponData(equipslot.CurrentItem.id).ItemType;
 
-        if (item != null && item == "Weapon")
-        { 
-            // 슬롯이 EquipSlot인 경우에만 아이템 해제
-            if (equipslot != null)
+            if (item != null && item == "Weapon")
             {
-                equipslot.Detach();
-                itemSlot.MoveController.animator.SetInteger("WeaponState", (int)e_Weapon.None);
-            }
+                // 슬롯이 EquipSlot인 경우에만 아이템 해제
+                if (equipslot != null)
+                {
+                    equipslot.Detach();
+                    itemSlot.MoveController.animator.SetInteger("WeaponState", (int)e_Weapon.None);
+                    UIManager.instance.RefreshHp(player.tag, player.GetComponent<Health>());
+                    UIManager.instance.RefreshPlayerMp(player.GetComponent<Health>());
+                }
 
-            // 현재 선택된 아이템 초기화
-            equipslot.CurrentItem = null;
+                // 현재 선택된 아이템 초기화
+                equipslot.CurrentItem = null;
+            }
         }
+        else
+        {
+            Debug.Log("아이템이 존재하지 않습니다.");
+        }
+
     }
 
     private void Start()

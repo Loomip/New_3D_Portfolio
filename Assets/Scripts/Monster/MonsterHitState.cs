@@ -20,7 +20,7 @@ public class MonsterHitState : MonsterAttackableState
         meshs.materials = materialsCopy;
 
         // 맞는 사운드
-        //SoundManager.instance.PlaySfx(e_Sfx.Hit);
+        SoundManager.instance.PlaySfx(e_Sfx.Hit);
 
         // 피격효과 재생
         hitParticle.Play();

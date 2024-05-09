@@ -51,34 +51,29 @@ public class CharacterState : MonoBehaviour
 
     public void AddStat(e_StatType statType, int value)
     {
-        int max = (statType == e_StatType.Hp) ? GetStat(e_StatType.MaxHp) :
-            (statType == e_StatType.Mp) ? GetStat(e_StatType.MaxMp) :
-            Consts.MAX_STAT;
         characterStats[statType] += value;
-        characterStats[statType] = Mathf.Clamp(characterStats[statType], 0, max);
-
-        // MaxHP 또는 MaxMP가 증가하면 HP 또는 MP도 증가
-        if (statType == e_StatType.MaxHp || statType == e_StatType.MaxMp)
+        if (statType == e_StatType.Hp && statType == e_StatType.Mp)
         {
-            e_StatType currentStatType = (statType == e_StatType.MaxHp) ? e_StatType.Hp : e_StatType.Mp;
-            characterStats[currentStatType] += value;
+            int max = (statType == e_StatType.Hp) ? GetStat(e_StatType.MaxHp) : GetStat(e_StatType.MaxMp);
+            characterStats[statType] = Mathf.Clamp(characterStats[statType], 0, max);
         }
+
+        // 체력과 마나가 최대치를 넘으면 최대치에 맞게 조정
+        characterStats[e_StatType.Hp] = Mathf.Min(characterStats[e_StatType.Hp], GetStat(e_StatType.MaxHp));
+        characterStats[e_StatType.Mp] = Mathf.Min(characterStats[e_StatType.Mp], GetStat(e_StatType.MaxMp));
     }
 
     public void RemoveStat(e_StatType statType, int value)
     {
         characterStats[statType] -= value;
-        if (statType == e_StatType.MaxHp)
+        if (statType == e_StatType.Hp && statType == e_StatType.Mp)
         {
-            characterStats[e_StatType.Hp] = Mathf.Min(characterStats[e_StatType.Hp], characterStats[e_StatType.MaxHp]);
-        }
-        else
-        {
-            int max = (statType == e_StatType.Hp) ? GetStat(e_StatType.MaxHp) :
-                    (statType == e_StatType.Mp) ? GetStat(e_StatType.MaxMp) :
-                    Consts.MAX_STAT;
+            int max = (statType == e_StatType.Hp) ? GetStat(e_StatType.MaxHp) : GetStat(e_StatType.MaxMp);
             characterStats[statType] = Mathf.Clamp(characterStats[statType], 0, max);
         }
-    }
 
+        // 체력과 마나가 최대치를 넘으면 최대치에 맞게 조정
+        characterStats[e_StatType.Hp] = Mathf.Min(characterStats[e_StatType.Hp], GetStat(e_StatType.MaxHp));
+        characterStats[e_StatType.Mp] = Mathf.Min(characterStats[e_StatType.Mp], GetStat(e_StatType.MaxMp));
+    }
 }

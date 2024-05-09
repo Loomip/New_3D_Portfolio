@@ -13,6 +13,8 @@ public class PHealth : Health
     [SerializeField] private Rigidbody[] rigidbodies;
     [SerializeField] private Transform regdollPosition;
 
+    [SerializeField] private GameObject Ending;
+
     private void Start()
     {
         meshs = GetComponentInChildren<SkinnedMeshRenderer>();
@@ -40,6 +42,8 @@ public class PHealth : Health
             {
                 rb.AddExplosionForce(10, regdollPosition.position, 20f, 5f, ForceMode.Impulse);
             }
+
+            Ending.SetActive(true);
         }
     }
 
