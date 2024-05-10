@@ -17,7 +17,7 @@ public class SkillAttackEvent : MonoBehaviour
         GameObject rangeInstant = Instantiate(meleeSkill, skillPos.position, meleeSkill.transform.rotation);
         Effect effect = rangeInstant.GetComponent<Effect>();
         CharacterState state = GetComponentInParent<CharacterState>();
-        effect.Atk = state.GetStat(e_StatType.Atk);
+        effect.Atk = state.Atk;
     }
 
     void RangedSkill()
@@ -27,6 +27,6 @@ public class SkillAttackEvent : MonoBehaviour
         bulletRigid.velocity = skillPos.forward * 10f;
         Effect effect = rangeInstant.GetComponent<Effect>();
         CharacterState state = GetComponentInParent<CharacterState>();
-        effect.Atk = state.GetStat(e_StatType.Atk);
+        effect.Atk = state.Atk;
     }
 }

@@ -58,7 +58,7 @@ public class MonsterHitState : MonsterAttackableState
 
     public override void UpdateState()
     {
-        if (state.GetStat(e_StatType.Hp) <= 0)
+        if (state.Hp <= 0)
         {
             controller.TransactionToState(e_MonsterState.Die);
             return;
@@ -77,7 +77,7 @@ public class MonsterHitState : MonsterAttackableState
         if (controller.GetPlayerDistance() <= detactDistance)
         {
             // 인식 범위에 들어온 경우
-            nav.speed = state.GetStat(e_StatType.Spd);
+            nav.speed = state.Spd;
 
             nav.SetDestination(controller.Player.transform.position);
             return;

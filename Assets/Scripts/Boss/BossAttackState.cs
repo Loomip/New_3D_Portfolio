@@ -48,7 +48,7 @@ public class BossAttackState : BossAttackableState
     // 대기 상태 기능 동작 처리 (상태 실행)
     public override void UpdateState()
     {
-        if (state.GetStat(e_StatType.Hp) <= 0)
+        if (state.Hp <= 0)
         {
             controller.TransactionToState(e_BossState.Die);
             return;

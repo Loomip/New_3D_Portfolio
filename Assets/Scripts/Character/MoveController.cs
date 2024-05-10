@@ -54,11 +54,11 @@ public class MoveController : MonoBehaviour
         if (isAvoiding)
         {
             // 회피 중이면 회피 방향으로 이동
-            controller.Move(avoidPos * characterState.GetStat(e_StatType.Spd) * Time.deltaTime);
+            controller.Move(avoidPos * characterState.Spd * Time.deltaTime);
         }
         else
         {
-            speed = characterState.GetStat(e_StatType.Spd);
+            speed = characterState.Spd;
 
             float h = Input.GetAxis("Horizontal");
             float v = Input.GetAxis("Vertical");
@@ -118,7 +118,7 @@ public class MoveController : MonoBehaviour
             float dodgeDuration = 1f;
 
             // 일정 시간 후 스피드를 다시 원래 값으로 돌리는 코루틴 시작
-            StartCoroutine(ResetSpeedAfterDelay(characterState.GetStat(e_StatType.Spd), dodgeDuration));
+            StartCoroutine(ResetSpeedAfterDelay(characterState.Spd, dodgeDuration));
         }
     }
 
@@ -132,13 +132,13 @@ public class MoveController : MonoBehaviour
 
             // 회피 동작 중에 속도를 점진적으로 감소시킵니다.
             float currentSpeed = Mathf.Lerp(originalSpeed * 2, originalSpeed, elapsedTime / delay);
-            characterState.SetStat(e_StatType.Spd, (int)currentSpeed);
+            characterState.Spd = (int)currentSpeed;
 
             yield return null;
         }
 
         // 회피 동작이 끝날 때에는 속도를 원래 값으로 돌립니다.
-        characterState.SetStat(e_StatType.Spd, originalSpeed);
+        characterState.Spd = originalSpeed;
 
         isAvoiding = false;  // 회피 종료
     }

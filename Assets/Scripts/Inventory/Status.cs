@@ -54,10 +54,10 @@ public class Status : MonoBehaviour
     // 캐릭터 스텟 리프레쉬
     public void Refresh_Stat()
     {
-        hpText.text = "HP: " + player.GetStat(e_StatType.Hp) + " / " + player.GetStat(e_StatType.MaxHp);
-        mpText.text = "MP: " + player.GetStat(e_StatType.Mp) + " / " + player.GetStat(e_StatType.MaxMp);
-        atkText.text = "Attack : " + player.GetStat(e_StatType.Atk);
-        defText.text = "Defense: " + player.GetStat(e_StatType.Def);
+        hpText.text = "HP: " + player.Hp + " / " + player.MaxHp;
+        mpText.text = "MP: " + player.Mp + " / " + player.MaxMp;
+        atkText.text = "Attack : " + player.Atk;
+        defText.text = "Defense: " + player.Def;
     }
 
     // 아이템 클릭 이벤트 핸들러

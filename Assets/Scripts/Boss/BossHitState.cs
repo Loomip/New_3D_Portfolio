@@ -55,7 +55,7 @@ public class BossHitState : BossAttackableState
 
     public override void UpdateState()
     {
-        if (state.GetStat(e_StatType.Hp) <= 0)
+        if (state.Hp <= 0)
         {
             controller.TransactionToState(e_BossState.Die);
             return;

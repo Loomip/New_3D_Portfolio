@@ -21,10 +21,10 @@ public class AttackController : MonoBehaviour
     // 공격력
     protected int attackPower
     {
-        get => state.GetStat(e_StatType.Atk);
-        set => state.SetStat(e_StatType.Atk, value);
+        get => state.Atk;
+        set => state.Atk = value;
     }
-
+                            
     // 공격 가능 여부
     protected bool isAttack = true;
     public bool IsAttack { get => isAttack; set => isAttack = value; }
@@ -65,13 +65,13 @@ public class AttackController : MonoBehaviour
 
     protected IEnumerator isSkill()
     {
-        if (health.mp >= state.GetStat(e_StatType.Exhaustion))
+        if (health.mp >= state.Mp)
         {
             isSkillCooldown = false;
             animator.SetTrigger("isSkill");
-            health.mp -= state.GetStat(e_StatType.Exhaustion);
+            health.mp -= state.Exhaustion;
             UIManager.instance.RefreshPlayerMp(health);
-            yield return new WaitForSeconds(state.GetStat(e_StatType.Cooldown));
+            yield return new WaitForSeconds(state.Cooldown);
             isSkillCooldown = true;
         }
     }

@@ -53,30 +53,6 @@ public class DataManager : SingletonDontDestroy<DataManager>
         return itemStatData.TryGetValue(ID, out var result) ? result : null;
     }
 
-    // 장비의 스텟들을 가져오는 메소드
-    public Dictionary<e_StatType, int> GetWeaponState(int ID)
-    {
-        if (itemStatData.TryGetValue(ID, out var result))
-        {
-            return new Dictionary<e_StatType, int>
-        {
-            { e_StatType.Atk, result.Atk },
-            { e_StatType.Def, result.Def },
-            { e_StatType.Spd, result.Spd },
-            { e_StatType.Hp, result.Hp },
-            { e_StatType.MaxHp, result.MaxHp },
-            { e_StatType.Mp, result.Mp },
-            { e_StatType.MaxMp, result.MaxMp },
-            {e_StatType.Exhaustion, result.Exhaustion },
-            {e_StatType.Cooldown, result.Cooldown }
-        };
-        }
-        else
-        {
-            return null;
-        }
-    }
-
     public Data_Item.Param GetRandomItemDataParams()
     {
         //강화된 장비를 불러오지 못하게 + 소모품은 10000번대로 바꿈

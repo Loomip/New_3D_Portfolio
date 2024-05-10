@@ -22,8 +22,8 @@ public class MonsterMeleeAttackState : MonsterAttackableState
     // 공격력을 담을 변수
     private int atk
     {
-        get => state.GetStat(e_StatType.Atk);
-        set => state.SetStat(e_StatType.Atk, value);
+        get => state.Atk;
+        set => state.Atk = value;
     }
 
     // 공격 대상을 주시
@@ -70,7 +70,7 @@ public class MonsterMeleeAttackState : MonsterAttackableState
 
     public override void UpdateState()
     {
-        if (state.GetStat(e_StatType.Hp) <= 0)
+        if (state.Hp <= 0)
         {
             controller.TransactionToState(e_MonsterState.Die);
             return;

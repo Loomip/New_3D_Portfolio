@@ -13,21 +13,21 @@ public abstract class Health : MonoBehaviour
     // 체력을 담을 변수
     public int hp
     {
-        get => State.GetStat(e_StatType.Hp);
-        set => State.SetStat(e_StatType.Hp, value);
+        get => State.Hp;
+        set => State.Hp = value;
     }
 
     public int mp
     {
-        get => State.GetStat(e_StatType.Mp);
-        set => State.SetStat(e_StatType.Mp, value);
+        get => State.Mp;
+        set => State.Mp = value;
     }
 
     // 방어력 계산
     private int def
     {
-        get => State.GetStat(e_StatType.Def);
-        set => State.SetStat(e_StatType.Def, value);
+        get => State.Def; 
+        set => State.Def = value;
     }
 
     // 데미지 쿨시간 

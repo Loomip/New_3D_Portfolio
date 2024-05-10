@@ -69,7 +69,7 @@ public class MonsterRunState : MonsterAttackableState
 
     public override void EnterState(e_MonsterState monsterState)
     {
-        nav.speed = state.GetStat(e_StatType.Spd);
+        nav.speed = state.Spd;
 
         animator.SetInteger("State", (int)monsterState);
 
@@ -80,7 +80,7 @@ public class MonsterRunState : MonsterAttackableState
 
     public override void UpdateState()
     {
-        if (state.GetStat(e_StatType.Hp) <= 0)
+        if (state.Hp <= 0)
         {
             controller.TransactionToState(e_MonsterState.Die);
             return;

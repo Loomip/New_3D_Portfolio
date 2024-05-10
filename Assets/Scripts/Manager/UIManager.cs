@@ -80,23 +80,23 @@ public class UIManager : SingletonDontDestroy<UIManager>
         switch (tag)
         {
             case "Player":
-                playerHp.value = (float)entity.hp / entity.State.GetStat(e_StatType.MaxHp);
+                playerHp.value = (float)entity.hp / entity.State.MaxHp;
                 break;
             case "Enemy":
                 if (enemyHealthBars.TryGetValue(entity, out Slider enemyHp))
                 {
-                    enemyHp.value = (float)entity.hp / entity.State.GetStat(e_StatType.MaxHp);
+                    enemyHp.value = (float)entity.hp / entity.State.MaxHp;
                 }
                 break;
             case "Boss":
-                bossHp.value = (float)entity.hp / entity.State.GetStat(e_StatType.MaxHp);
+                bossHp.value = (float)entity.hp / entity.State.MaxHp;
                 break;
         }
     }
 
     public void RefreshPlayerMp(Health entity)
     {
-        playerMp.value = (float)entity.mp / entity.State.GetStat(e_StatType.MaxMp);
+        playerMp.value = (float)entity.mp / entity.State.MaxMp;
     }
 
 

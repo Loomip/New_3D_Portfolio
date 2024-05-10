@@ -13,8 +13,8 @@ public class BossAttackableState : BossState
     // 공격력을 담을 변수
     public int atk
     {
-        get => state.GetStat(e_StatType.Atk);
-        set => state.SetStat(e_StatType.Atk, value);
+        get => state.Atk;
+        set => state.Atk = value;
     }
 
     public override void EnterState(e_BossState state)

@@ -1,13 +1,34 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.Rendering.DebugUI;
 
 public class CharacterState : MonoBehaviour
 {
     [SerializeField] private string characterName; // 캐릭터 이름
     public string CharacterName { get => characterName; set => characterName = value; }
 
-    private Dictionary<e_StatType, int> characterStats; // 캐릭터의 스탯을 저장
+    // 능력치 설정
+    private int atk;
+    private int def;
+    private int spd;
+    private int hp;
+    private int maxHp;
+    private int mp;
+    private int maxMp;
+    private int exhaustion;
+    private int cooldown;
+
+    // 설정된 능력치를 가져오는 프로퍼티
+    public int Atk { get => atk; set => atk = value; }
+    public int Def { get => def; set => def = value; }
+    public int Spd { get => spd; set => spd = value; }
+    public int Hp { get => hp; set => hp = value; }
+    public int MaxHp { get => maxHp; set => maxHp = value; }
+    public int Mp { get => mp; set => mp = value; }
+    public int MaxMp { get => maxMp; set => maxMp = value; }
+    public int Exhaustion { get => exhaustion; set => exhaustion = value; }
+    public int Cooldown { get => cooldown; set => cooldown = value; }
 
     void Start()
     {
@@ -20,60 +41,84 @@ public class CharacterState : MonoBehaviour
         // DataManager를 사용하여 이 캐릭터의 스탯 데이터를 가져옴
         Data_Character.Param stats = DataManager.instance.GetCharacterData(CharacterName);
 
-        // 스탯 데이터를 사전에 저장
-        characterStats = new Dictionary<e_StatType, int>
-        {
-            { e_StatType.Atk, stats.Atk },
-            { e_StatType.Def, stats.Def },
-            { e_StatType.Spd, stats.Spd },
-            { e_StatType.Hp, stats.Hp },
-            { e_StatType.MaxHp, stats.MaxHp },
-            { e_StatType.Mp, stats.Mp },
-            { e_StatType.MaxMp, stats.MaxMp },
-            { e_StatType.Exhaustion, 0 },
-            { e_StatType.Cooldown, 0 }
-        };
+        Atk = stats.Atk;
+        Def = stats.Def;
+        Spd = stats.Spd;
+        Hp = stats.Hp;
+        MaxHp = stats.MaxHp;
+        Mp = stats.Mp;
+        MaxMp = stats.MaxMp;
     }
 
-    // 원하는 스탯을 가져오는 메소드
-    public int GetStat(e_StatType statType)
+    public void AddAtk(int value)
     {
-        return characterStats[statType];
+        Atk += value;
     }
 
-    public void SetStat(e_StatType statType, int value)
+    public void AddDef(int value)
     {
-        int max = (statType == e_StatType.Hp) ? GetStat(e_StatType.MaxHp) :
-               (statType == e_StatType.Mp) ? GetStat(e_StatType.MaxMp) :
-               Consts.MAX_STAT;
-        characterStats[statType] = Mathf.Clamp((int)value, 0, max);
+        Def += value;
     }
 
-    public void AddStat(e_StatType statType, int value)
+    public void AddSpd(int value)
     {
-        characterStats[statType] += value;
-        if (statType == e_StatType.Hp && statType == e_StatType.Mp)
-        {
-            int max = (statType == e_StatType.Hp) ? GetStat(e_StatType.MaxHp) : GetStat(e_StatType.MaxMp);
-            characterStats[statType] = Mathf.Clamp(characterStats[statType], 0, max);
-        }
-
-        // 체력과 마나가 최대치를 넘으면 최대치에 맞게 조정
-        characterStats[e_StatType.Hp] = Mathf.Min(characterStats[e_StatType.Hp], GetStat(e_StatType.MaxHp));
-        characterStats[e_StatType.Mp] = Mathf.Min(characterStats[e_StatType.Mp], GetStat(e_StatType.MaxMp));
+        Spd += value;
     }
 
-    public void RemoveStat(e_StatType statType, int value)
+    public void AddHp(int value)
     {
-        characterStats[statType] -= value;
-        if (statType == e_StatType.Hp && statType == e_StatType.Mp)
-        {
-            int max = (statType == e_StatType.Hp) ? GetStat(e_StatType.MaxHp) : GetStat(e_StatType.MaxMp);
-            characterStats[statType] = Mathf.Clamp(characterStats[statType], 0, max);
-        }
+        Hp = Mathf.Min(Hp + value, MaxHp);
+    }
 
-        // 체력과 마나가 최대치를 넘으면 최대치에 맞게 조정
-        characterStats[e_StatType.Hp] = Mathf.Min(characterStats[e_StatType.Hp], GetStat(e_StatType.MaxHp));
-        characterStats[e_StatType.Mp] = Mathf.Min(characterStats[e_StatType.Mp], GetStat(e_StatType.MaxMp));
+    public void AddMaxHp(int value)
+    {
+        MaxHp += value;
+        Hp = Mathf.Min(Hp, MaxHp);
+    }
+
+    public void AddMp(int value)
+    {
+        Mp = Mathf.Min(Mp + value, MaxMp);
+    }
+
+    public void AddMaxMp(int value)
+    {
+        MaxMp += value;
+        Mp = Mathf.Min(Mp, MaxMp);
+    }
+
+    public void RemoveAtk(int value)
+    {
+        Atk = Mathf.Max(0, Atk - value);
+    }
+
+    public void RemoveDef(int value)
+    {
+        Def = Mathf.Max(0, Def - value);
+    }
+
+    public void RemoveSpd(int value)
+    {
+        Spd = Mathf.Max(0, Spd - value);
+    }
+
+    public void RemoveHp(int value)
+    {
+        Hp = Mathf.Max(0, Hp - value);
+    }
+
+    public void RemoveMaxHp(int value)
+    {
+        MaxHp = Mathf.Max(0, MaxHp - value);
+    }
+
+    public void RemoveMp(int value)
+    {
+        Mp = Mathf.Max(0, Mp - value);
+    }
+
+    public void RemoveMaxMp(int value)
+    {
+        MaxMp = Mathf.Max(0, MaxMp - value);
     }
 }
