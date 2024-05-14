@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public abstract class Health : MonoBehaviour
 {
     // 캐릭터의 능력치
@@ -39,6 +38,7 @@ public abstract class Health : MonoBehaviour
     public bool CanTakeDamage { get => canTakeDamage; set => canTakeDamage = value; }
 
     public abstract void Hit(int damage);
+
 
     public IEnumerator IsHitCoroutine(int damage)
     {

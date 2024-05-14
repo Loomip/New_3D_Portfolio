@@ -3197,8 +3197,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 675024213d3ca44038e1471b22348c0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Color1: {r: 0.24705884, g: 0.6901961, b: 0.96470594, a: 0.78431374}
-  Color2: {r: 0, g: 0.45061755, b: 0.73, a: 0.78431374}
+  Color1: {r: 0.24705884, g: 0.6901961, b: 0.96470594, a: 1}
+  Color2: {r: 0, g: 0.45061755, b: 0.73, a: 1}
   Angle: 0
 --- !u!114 &6617756903114026113
 MonoBehaviour:

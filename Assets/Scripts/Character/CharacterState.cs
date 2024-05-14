@@ -48,6 +48,8 @@ public class CharacterState : MonoBehaviour
         MaxHp = stats.MaxHp;
         Mp = stats.Mp;
         MaxMp = stats.MaxMp;
+        Exhaustion = 0;
+        Cooldown = 0;
     }
 
     public void AddAtk(int value)
@@ -87,6 +89,16 @@ public class CharacterState : MonoBehaviour
         Mp = Mathf.Min(Mp, MaxMp);
     }
 
+    public void AddExhaustion(int value)
+    {
+        Exhaustion += value;
+    }
+
+    public void AddCooldown(int value)
+    {
+        Cooldown += value;
+    }
+
     public void RemoveAtk(int value)
     {
         Atk = Mathf.Max(0, Atk - value);
@@ -120,5 +132,15 @@ public class CharacterState : MonoBehaviour
     public void RemoveMaxMp(int value)
     {
         MaxMp = Mathf.Max(0, MaxMp - value);
+    }
+
+    public void RemoveExhaustion(int value)
+    {
+        Exhaustion -= value;
+    }
+
+    public void RemoveCooldown(int value)
+    {
+        Cooldown -= value;
     }
 }

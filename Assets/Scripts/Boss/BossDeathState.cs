@@ -30,8 +30,9 @@ public class BossDeathState : BossAttackableState
         if (time >= deathDelayTime)
         {
             // ∏ÛΩ∫≈Õ∞° º“∏Íµ 
-            //Instantiate(destroyParticlePrefab, transform.position, Quaternion.identity);
+           
             bossGround.MonsterDied();
+            Instantiate(destroyParticlePrefab, transform.position, destroyParticlePrefab.transform.rotation);
             Destroy(gameObject);
         }
     }

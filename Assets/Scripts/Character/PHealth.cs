@@ -36,6 +36,9 @@ public class PHealth : Health
             // 죽음
             animator.enabled = false;
 
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+
             EnableRegdoll();
 
             foreach (Rigidbody rb in rigidbodies)
@@ -60,7 +63,7 @@ public class PHealth : Health
         meshs.materials = materialsCopy;
 
         // 맞는 사운드
-        //SoundManager.instance.PlaySfx(e_Sfx.Hit);
+        SoundManager.instance.PlaySfx(e_Sfx.Hit);
 
         yield return new WaitForSeconds(0.2f);
 

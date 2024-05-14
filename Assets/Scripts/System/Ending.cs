@@ -32,6 +32,9 @@ public class Ending : MonoBehaviour
         txt_ReStart.text = DataManager.instance.GetWordData("Start");
         txt_Exit.text = DataManager.instance.GetWordData("Final");
 
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+
         if (playerHp.hp > 0)
         {
             txt_Ending.text = DataManager.instance.GetWordData("Ending");

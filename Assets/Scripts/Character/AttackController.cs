@@ -12,7 +12,7 @@ public class AttackController : MonoBehaviour
     protected CharacterState state;
     protected Health health;
 
-    // 이동 컨포넌트
+    // 이동 컴포넌트
     protected MoveController movement;
 
     // 공격 대상 레이어
@@ -70,6 +70,10 @@ public class AttackController : MonoBehaviour
             isSkillCooldown = false;
             animator.SetTrigger("isSkill");
             health.mp -= state.Exhaustion;
+
+            Debug.Log(health.mp);
+            Debug.Log(state.Exhaustion);
+
             UIManager.instance.RefreshPlayerMp(health);
             yield return new WaitForSeconds(state.Cooldown);
             isSkillCooldown = true;

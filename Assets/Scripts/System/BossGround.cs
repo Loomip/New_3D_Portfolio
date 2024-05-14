@@ -20,6 +20,9 @@ public class BossGround : MonoBehaviour
     // 보스 소환 위치
     [SerializeField] private Vector3 spawnAreaCenter;
 
+    // 보스 처치 후
+    [SerializeField] private GameObject Ending;
+
     // 맵 재시작 방지 
     private bool isGroundStart = false;
 
@@ -30,7 +33,7 @@ public class BossGround : MonoBehaviour
         doorin.OpenDoor(); // 문을 염
         IsGroundStart = false;
         // 클리어 될때 나올 기능
-        Debug.Log("구역 클리어!");
+        Ending.SetActive(true);
     }
 
     IEnumerator AppearEffectAndSpawn()

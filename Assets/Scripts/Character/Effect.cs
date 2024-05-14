@@ -34,13 +34,24 @@ public class Effect : MonoBehaviour
     {
         if (other.tag == "Enemy")
         {
-            other.GetComponent<MonsterFSMController>().Hit();
-            other.GetComponent<Health>().Hit(Atk);
+            var monsterController = other.GetComponent<MonsterFSMController>();
+            var health = other.GetComponent<Health>();
+            if (monsterController != null && health != null)
+            {
+                monsterController.Hit();
+                health.Hit(Atk);
+            }
         }
-        else if (other.tag == "Boss")
+
+        if (other.tag == "Boss")
         {
-            other.GetComponent<BossFSMController>().Hit();
-            other.GetComponent<Health>().Hit(Atk);
+            var bossController = other.GetComponent<BossFSMController>();
+            var health = other.GetComponent<Health>();
+            if (bossController != null && health != null)
+            {
+                bossController.Hit();
+                health.Hit(Atk);
+            }
         }
     }
 

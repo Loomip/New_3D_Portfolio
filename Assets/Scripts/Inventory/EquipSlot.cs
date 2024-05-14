@@ -19,10 +19,6 @@ public class EquipSlot : Slot
     //무기를 끼고 있는지
     public bool IsEquipped { get; private set; } = false;
 
-    // 현재 체력과 마나를 저장할 변수
-    int currentHp;
-    int currentMp;
-
     public void Set(ItemData data)
     {
         // 아이템 데이터 설정
@@ -46,10 +42,8 @@ public class EquipSlot : Slot
         state.AddSpd(status.Spd);
         state.AddMaxHp(status.MaxHp);
         state.AddMaxMp(status.MaxMp);
-
-        // 이전에 저장한 체력과 마나를 복원
-        state.Hp = Mathf.Min(currentHp, state.MaxHp);
-        state.Mp = Mathf.Min(currentMp, state.MaxMp);
+        state.AddExhaustion(status.Exhaustion);
+        state.AddCooldown(status.Cooldown);
 
         // 체력과 마나 리프레쉬
         UIManager.instance.RefreshHp(state.tag, state.GetComponent<Health>());
@@ -69,20 +63,18 @@ public class EquipSlot : Slot
 
         var status = DataManager.instance.GetWeaponData(detachedItem.id);
 
-        // 현재 체력과 마나를 임시 변수에 저장
-        currentHp = state.Hp;
-        currentMp = state.Mp;
-
         // 장비의 능력치를 빼줌
         state.RemoveAtk(status.Atk);
         state.RemoveDef(status.Def);
         state.RemoveSpd(status.Spd);
         state.RemoveMaxHp(status.MaxHp);
         state.RemoveMaxMp(status.MaxMp);
-        
+        state.RemoveExhaustion(status.Exhaustion);
+        state.RemoveCooldown(status.Cooldown);
+
         // 현제 채력과 마나와 최대 값과 비교
-        state.Hp = Mathf.Min(currentHp, state.MaxHp);
-        state.Mp = Mathf.Min(currentMp, state.MaxMp);
+        state.Hp = Mathf.Min(state.Hp, state.MaxHp);
+        state.Mp = Mathf.Min(state.Mp, state.MaxMp);
 
         // 장착된 아이템을 제거함
         img_Icon.sprite = null;
@@ -106,8 +98,5 @@ public class EquipSlot : Slot
     {
         state = GameObject.FindWithTag("Player").GetComponent<CharacterState>();
         weaponTransfom = GameObject.FindWithTag("Player").GetComponentInChildren<AttackController>();
-
-        currentHp = state.Hp;
-        currentMp = state.Mp;
     }
 }

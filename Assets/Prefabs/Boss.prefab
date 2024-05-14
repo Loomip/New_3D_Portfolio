@@ -11255,7 +11255,8 @@ MonoBehaviour:
   smoothValue: 5
   time: 0
   deathDelayTime: 5
-  destroyParticlePrefab: {fileID: 0}
+  destroyParticlePrefab: {fileID: 7226888052703040409, guid: e4887b4244b01c44891d8f04dfbf01b9,
+    type: 3}
 --- !u!1 &3909860033060540111
 GameObject:
   m_ObjectHideFlags: 0

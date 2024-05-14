@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIManager : SingletonDontDestroy<UIManager>
+public class UIManager : Singleton<UIManager>
 {
     [Header("인벤토리 UI")]
     [SerializeField] private GameObject inven;
@@ -12,12 +13,13 @@ public class UIManager : SingletonDontDestroy<UIManager>
 
     [Header("대화창 UI")]
     [SerializeField] private GameObject InteractText;
+    [SerializeField] private NPC_Shop Npc;
     private NPCInteraction player;
 
     //상호작용
     void InteractableObject()
     {
-        if (player != null && player.GetInterctableObject() != null)
+        if (player != null && player.GetInterctableObject() != null && Npc.IsShopOpen() == false)
             InteractableShow();
         else
             InteractableHide();
@@ -110,8 +112,15 @@ public class UIManager : SingletonDontDestroy<UIManager>
         InteractableObject();
         DoorableObject();
 
-        if (Input.GetKeyDown(KeyCode.I))
+        // 상점이 열려있는지 확인
+        if (Npc.IsShopOpen() == true)
         {
+            // 상점이 열려있으면 인벤토리를 비활성화
+            inven.SetActive(false);
+        }
+        else if (Input.GetKeyDown(KeyCode.I) && Npc.IsShopOpen() == false)
+        {
+            // 상점이 닫혀있고 'I' 키가 눌렸으면 인벤토리의 활성 상태를 토글
             inven.SetActive(!inven.activeInHierarchy);
 
             var isShow = inven.activeInHierarchy;
@@ -119,12 +128,12 @@ public class UIManager : SingletonDontDestroy<UIManager>
             if (isShow)
             {
                 inven.GetComponentInChildren<InventoryMenuController>().InvenShow();
-                Cursor.lockState = CursorLockMode.None; 
-                Cursor.visible = true; 
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
             }
             else
             {
-                Cursor.lockState = CursorLockMode.Locked; 
+                Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;
             }
         }

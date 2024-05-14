@@ -106,12 +106,14 @@ public class Bullet : MonoBehaviour
             if (targetHealth != null)
             {
                 if (other.tag == "Enemy")
+                {
                     other.GetComponent<MonsterFSMController>().Hit();
-                    other.GetComponent<Health>().Hit(Atk);
-
+                }
                 if (other.tag == "Boss")
+                {
                     other.GetComponent<BossFSMController>().Hit();
-                    other.GetComponent<Health>().Hit(Atk);
+                }
+                other.GetComponent<Health>().Hit(Atk);
             }
 
             Destroy(gameObject);

@@ -122,6 +122,9 @@ public class ItemSlot : MonoBehaviour
                 {
                     // 선택한 장비를 해제
                     equipSlot.Detach();
+
+                    Debug.Log(player.Mp);
+                    Debug.Log(player.Exhaustion);
                 }
 
                 // 선택한 장비를 장착
