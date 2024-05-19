@@ -32,7 +32,6 @@ public class InventoryManager : SingletonDontDestroy<InventoryManager>
         gold = Consts.START_GOLD;
     }
 
-
     //============================================================================================================
 
     [Header("인벤토리 최대 개수")]
@@ -150,9 +149,15 @@ public class InventoryManager : SingletonDontDestroy<InventoryManager>
         RefreshIcon();
     }
 
-    // 인벤토리에서 아이템을 제거
+    // 인벤토리에서 아이템을 제거하고 남은 아이템의 개수를 반환
     public void RemoveItem(ItemData newItem)
     {
+        if (newItem == null)
+        {
+            Debug.Log("제거하려는 아이템이 null입니다.");
+            return;
+        }
+
         int index = FindItemIndex(newItem);
 
         if (index >= 0) // 인벤토리에 아이템이 존재할 경우

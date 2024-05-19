@@ -71,9 +71,6 @@ public class AttackController : MonoBehaviour
             animator.SetTrigger("isSkill");
             health.mp -= state.Exhaustion;
 
-            Debug.Log(health.mp);
-            Debug.Log(state.Exhaustion);
-
             UIManager.instance.RefreshPlayerMp(health);
             yield return new WaitForSeconds(state.Cooldown);
             isSkillCooldown = true;

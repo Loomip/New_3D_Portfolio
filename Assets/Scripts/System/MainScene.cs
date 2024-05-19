@@ -8,6 +8,8 @@ public class MainScene : MonoBehaviour
     void Start()
     {
         SoundManager.instance.PlayBgm(e_Bgm.Start);
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 }
 

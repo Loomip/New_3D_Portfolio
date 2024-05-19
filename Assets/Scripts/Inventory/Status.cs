@@ -86,7 +86,7 @@ public class Status : MonoBehaviour
                 if (equipslot != null)
                 {
                     equipslot.Detach();
-                    itemSlot.MoveController.animator.SetInteger("WeaponState", (int)e_Weapon.None);
+                    itemSlot.MoveController.Animator.SetInteger("WeaponState", (int)e_Weapon.None);
                     UIManager.instance.RefreshHp(player.tag, player.GetComponent<Health>());
                     UIManager.instance.RefreshPlayerMp(player.GetComponent<Health>());
                 }

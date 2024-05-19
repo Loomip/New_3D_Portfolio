@@ -88,7 +88,7 @@ public class EquipSlot : Slot
 
         EquippedItem = null;
         IsEquipped = false;
-        CurrentItem = null;
+        currentItem = null;
 
         // 장착 해제되는 아이템 정보를 반환
         return detachedItem;

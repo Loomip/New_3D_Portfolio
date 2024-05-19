@@ -6,7 +6,9 @@ using UnityEngine;
 public class MoveController : MonoBehaviour
 {
     // 애니메이터 컴포넌트
-    public Animator animator;
+    private Animator animator;
+    public Animator Animator { get => animator; set => animator = value; }
+
     // 캐릭터 컨트롤러 컴포넌트
     private CharacterController controller;
     // 캐릭터 스테이트 컴포넌트
@@ -34,6 +36,7 @@ public class MoveController : MonoBehaviour
 
     public bool IsWeaponEquipped { get => isWeaponEquipped; set => isWeaponEquipped = value; }
 
+
     // 체력 컴포넌트
     private Health health;
 
@@ -43,6 +46,7 @@ public class MoveController : MonoBehaviour
 
     void Start()
     {
+        Animator = GetComponent<Animator>();
         controller = GetComponent<CharacterController>();
         characterState = GetComponent<CharacterState>();
         health = GetComponent<Health>();
@@ -67,7 +71,7 @@ public class MoveController : MonoBehaviour
             Vector3 direction = new Vector3(h, 0f, v).normalized;
 
             // 애니메이션 재생
-            animator.SetFloat("isRun", direction.magnitude);
+            Animator.SetFloat("isRun", direction.magnitude);
 
             // 카메라의 y축의 y회전각도을 기준으로 캐릭터의 시선 방향벡터를 설정
             direction = Quaternion.AngleAxis(camLookPoint.rotation.eulerAngles.y, Vector3.up) * direction;
@@ -112,7 +116,7 @@ public class MoveController : MonoBehaviour
                 avoidPos = movement.normalized;
             }
 
-            animator.SetTrigger("isAvoid");
+            Animator.SetTrigger("isAvoid");
 
             // 회피 동작 지속 시간
             float dodgeDuration = 1f;
@@ -145,8 +149,6 @@ public class MoveController : MonoBehaviour
 
     void Update()
     {
-        
-
         Move();
         Avoid();
 

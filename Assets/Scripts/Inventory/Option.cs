@@ -20,7 +20,7 @@ public class Option : MonoBehaviour
         bgmText.text = DataManager.instance.GetWordData("BGM");
         sfxText.text = DataManager.instance.GetWordData("SFX");
         muteText.text = DataManager.instance.GetWordData("Mute");
-        if (exitText != null)
+        if(exitText != null)
         {
             exitText.text = DataManager.instance.GetWordData("Exit");
         }

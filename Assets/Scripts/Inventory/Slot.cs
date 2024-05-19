@@ -28,19 +28,12 @@ public class Slot : MonoBehaviour
         set => slotIndex = value;
     }
 
-
     //아이템 클릭 이벤트
     public event Action<ItemData> onItemClick;
 
     //현재 슬롯의 아이템 데이터를 저장
     protected ItemData currentItem;
-
     public ItemData CurrentItem { get => currentItem; set => currentItem = value; }
-
-    public ItemData GetItem()
-    {
-        return CurrentItem;
-    }
 
     private Color iconColor;
 

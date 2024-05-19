@@ -225,6 +225,7 @@ public class NPC_Shop : NPC_Base
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        UIManager.instance.Player.GetComponent<MoveController>().enabled = true;
     }
 
     private void Start()

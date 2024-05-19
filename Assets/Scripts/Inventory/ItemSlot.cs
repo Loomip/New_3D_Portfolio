@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEditor.Progress;
 
 public class ItemSlot : MonoBehaviour
 {
@@ -48,6 +49,9 @@ public class ItemSlot : MonoBehaviour
     // 인벤토리 슬롯
     Slot slot;
 
+    // 선택 되어진 아이템
+    ItemData selectItem;
+
     //인벤토리의 슬롯을 초기화 하는 메서드
     private void InitSlots()
     {
@@ -57,27 +61,31 @@ public class ItemSlot : MonoBehaviour
         {
             slot = Instantiate(itemslotPrefab, itemContent).GetComponent<Slot>();
             slot.SLOTINDEX = i;
-            slot.onItemClick += OpenPopUp;
             slot.onItemClick += Refresh_Button;
+            slot.onItemClick += SelectItem;
 
             // 새로 생성된 슬롯을 InventoryManager의 슬롯 리스트에 할당
             InventoryManager.instance.SlotList[i] = slot;
         }
     }
 
-    //아이템의 정보를 표시해주는 함수
-    private void OpenPopUp(ItemData item)
+    // Player 인벤토리 아이템 선택 (슬롯 클릭 시 호출)
+    public void SelectItem(ItemData selectedItem)
     {
-        if (item == null)
+        selectItem = selectedItem;
+        OpenPopUp();
+    }
+
+    //아이템의 정보를 표시해주는 함수
+    private void OpenPopUp()
+    {
+        if (selectItem == null)
         {
             itemPopup.SetActive(false);
             return;
         }
 
-        // 팝업이 열린 아이템 저장
-        slot.CurrentItem = item;
-
-        var data = DataManager.instance.GetLacalizeData(item.id);
+        var data = DataManager.instance.GetLacalizeData(selectItem.id);
 
         if (data != null)
         {
@@ -89,7 +97,7 @@ public class ItemSlot : MonoBehaviour
         }
         else
         {
-            Debug.Log("Item data is null for id: " + item.id);
+            Debug.Log("Item data is null for id: " + selectItem.id);
         }
 
     }
@@ -110,7 +118,7 @@ public class ItemSlot : MonoBehaviour
         e_Weapon weaponType = GetWeaponType(itemData);
 
         //애니메이션 설정
-        MoveController.animator.SetInteger("WeaponState", (int)weaponType);
+        MoveController.Animator.SetInteger("WeaponState", (int)weaponType);
 
         // 선택한 아이템의 타입과 일치하는 장비 슬롯을 찾음
         foreach (var equipSlot in status.EquipSlotList.Values)
@@ -175,7 +183,7 @@ public class ItemSlot : MonoBehaviour
         InventoryManager.instance.RemoveItem(item);
 
         // 아이템을 사용한 후에 아이템의 개수를 확인
-        if (item.amount <= 0)
+        if (item.amount < 1)
         {
             slot.ClearSlot();
             ClosePopup();
@@ -219,18 +227,13 @@ public class ItemSlot : MonoBehaviour
     }
 
     //버리기 버튼 기능 (버튼에 직접 다는 기능)
-    public void Button_Discard()
+    private void Button_Discard()
     {
-        // 선택된 아이템이 없으면 기능 정지
-        if (slot == null)
-        {
-            return;
-        }
-
         // 아이템을 인벤토리에서 제거
-        InventoryManager.instance.RemoveItem(slot.CurrentItem);
+        InventoryManager.instance.RemoveItem(selectItem);
 
-        if (slot.CurrentItem == null || slot.CurrentItem.amount == 0)
+        // 아이템의 개수가 0이거나 아이템이 null인 경우
+        if (selectItem.amount < 1)
         {
             slot.ClearSlot();
             ClosePopup();
@@ -270,7 +273,7 @@ public class ItemSlot : MonoBehaviour
             Debug.Log("임의 선택에 사용할 수 있는 항목 데이터가 없습니다.");
         }
     }
-   
+
     void Start()
     {
         InitSlots();
