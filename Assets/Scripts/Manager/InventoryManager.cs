@@ -12,7 +12,7 @@ public class ItemData
     public int enhanceLevel; // 아이템의 강화 레벨
 }
 
-public class InventoryManager : SingletonDontDestroy<InventoryManager>
+public class InventoryManager : Singleton<InventoryManager>
 {
     //골드
     [SerializeField] TextMeshProUGUI goldText;

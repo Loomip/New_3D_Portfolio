@@ -65,7 +65,7 @@ public class AttackController : MonoBehaviour
 
     protected IEnumerator isSkill()
     {
-        if (health.mp >= state.Mp)
+        if (health.mp >= state.Exhaustion)
         {
             isSkillCooldown = false;
             animator.SetTrigger("isSkill");

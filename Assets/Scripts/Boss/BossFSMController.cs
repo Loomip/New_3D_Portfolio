@@ -16,7 +16,8 @@ public class BossFSMController : MonoBehaviour
     public GameObject Player { get => player; set => player = value; }
 
     // 스킬 사용 중인지
-    protected bool isSkill = false;
+    [SerializeField] protected bool isSkill = false;
+
     public bool IsSkill { get => isSkill; set => isSkill = value; }
 
     // 상태 전환 메소드

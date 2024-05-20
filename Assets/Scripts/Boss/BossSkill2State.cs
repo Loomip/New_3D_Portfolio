@@ -7,7 +7,6 @@ public class BossSkill2State : BossAttackableState
     [SerializeField] private GameObject Skill_2;
     [SerializeField] private Transform bulletPos3;
 
-
     IEnumerator ExecutePattern3()
     {
         GameObject rangeInstant = Instantiate(Skill_2, bulletPos3.position, bulletPos3.rotation);
